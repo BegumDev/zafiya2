@@ -1,0 +1,32 @@
+<script type="text/javascript">
+
+   // enables and disbales min and max qty
+   function minMaxQty(itemId) {
+       var currentValue = parseInt($(`#id_qty_${itemId}`).val());
+       var disableMinus = currentValue < 1;
+       var disablePlus = currentValue > 98;
+       $(`#decrement-qty_${itemId}`).prop('disabled', disableMinus);
+       $(`#increment-qty_${itemId}`).prop('disabled', disablePlus);
+   };
+
+   $('.decrement-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty-input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue - 1);
+       var itemId = $(this).data('item_id');
+       minMaxQty(itemId);
+   });
+
+   $('.increment-qty').click(function(e) {
+       e.preventDefault();
+       var closestInput = $(this).closest('.input-group').find('.qty-input')[0];
+       var currentValue = parseInt($(closestInput).val());
+       $(closestInput).val(currentValue + 1);
+       var itemId = $(this).data('item_id');
+       minMaxQty(itemId);
+   });
+
+</script>
+
+
