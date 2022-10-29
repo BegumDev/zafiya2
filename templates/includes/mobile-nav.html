@@ -1,0 +1,78 @@
+<!-- logo -->
+<div class="col-12 col-lg-3 text-center text-lg-left d-block d-lg-none">
+    <a href="{% url 'home' %}" class="nav-link">
+        <h2>zafiya</h2>
+        <p class="text-uppercase">home <strong>fragrances</strong></p>
+    </a>
+</div>
+<!-- navigation bar -->
+<nav class="navbar navbar-expand d-block d-lg-none bg-light w-100">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- home -->
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                <!-- products -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Products
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Best Sellers</a>
+                        <a class="dropdown-item" href="{% url 'account_logout' %}">Room Sprays</a>
+                        <a class="dropdown-item" href="{% url 'account_signup' %}">Candles & Wax Melts</a>
+                        <a class="dropdown-item" href="{% url 'account_login' %}">Sale</a>
+                    </div>
+                </li>
+                <!-- account -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                        <a class="dropdown-item" href="#">Product Management</a>
+                        {% endif %}
+                        <a class="dropdown-item" href="#">My Profile</a>
+                        <a class="dropdown-item" href="{% url 'account_logout' %}">Logout</a>
+                        {% else %}
+                        <a class="dropdown-item" href="{% url 'account_signup' %}">Register</a>
+                        <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>
+                        {% endif %}
+                    </div>
+                </li>
+                <!-- blog -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Blog</a>
+                </li>
+                <!-- basket -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">
+                        Basket
+                        {% if grand_total %}
+                        £{{ grand_total|floatformat:2 }}
+                        {% else %}
+                        £0.00
+                        {% endif %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- search box -->
+<div class="row">
+    <div class="col-12 text-center d-block d-lg-none">
+        <form action="#" method="GET">
+            <input class="border-black border" type="text" name="search" placeholder="Search the store">
+            <button class="btn btn-sm border-black border" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+    </div>
+</div>
