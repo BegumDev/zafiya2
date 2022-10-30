@@ -11,21 +11,47 @@
         <div class="col-6">
             <p>{{ post.blog_title }}</p>
             <p>{{ post.content }}</p>
-            <small><p>{{ post.author }}</p></small>
-            <small><p>{{ post.created_on }}</p></small>
+            <small>
+                <p>{{ post.author }}</p>
+            </small>
+            <small>
+                <p>{{ post.created_on }}</p>
+            </small>
+            <!-- post admin editing ability -->
+            {% if request.user.is_superuser %}
+            <div class="row mb-4">
+                <div class="col-2">
+                    <small><a href="{% url 'update_post' post.id %}" class="text-success">Edit Post</a></small>
+                </div>
+                <div class="col-2">
+                    <small><a href="{% url 'delete_post' post.id %}" class="text-danger">Delete Post</a></small>
+                </div>
+            </div>
+            {% endif %}
+            <hr>
+            <p>Comments...</p>
+            {% for x in post.comments.all %}
+            <div class="row w-50">
+                <div class="col-12">
+                    <hr>
+                    <p class="text-danger">{{ x.comment }}</p>
+                    <small><p class="text-info">{{ x.comment_author }}</p></small>
+                    <small><p class="text-danger">{{ x.date }}</p></small>
+                </div>
+            </div>
+            {% endfor %}
+            <hr>
+            {% if user.is_authenticated %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ comment_form | crispy }}
+                <button type="submit">Add Comment</button>
+            </form>
+            {% else %}
+                <p>Please <a href="{% url 'account_login' %}">log in</a> to add a comment</p>
+            {% endif %}
         </div>
     </div>
-    <!-- post editing ability -->
-    {% if request.user.is_superuser %}
-        <div class="row mb-4 w-50">
-            <div class="col-2">
-                <small><a href="{% url 'update_post' post.id %}" class="text-success">Edit Post</a></small>
-            </div>
-            <div class="col-2">
-                <small><a href="{% url 'delete_post' post.id %}" class="text-danger">Delete Post</a></small>
-            </div>
-        </div>
-    {% endif %}
     <!-- back to maain blog -->
     <div class="row mb-4">
         <div class="col-6">
