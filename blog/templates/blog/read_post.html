@@ -37,6 +37,7 @@
                     <p class="text-danger">{{ x.comment }}</p>
                     <small><p class="text-info">{{ x.comment_author }}</p></small>
                     <small><p class="text-danger">{{ x.date }}</p></small>
+                    <a href="{% url 'edit_comment' x.id %}">Edit Comment</a>
                 </div>
             </div>
             {% endfor %}
