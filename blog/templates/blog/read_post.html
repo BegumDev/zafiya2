@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="ml-4 mt-3 text-center">Read Post Page</h1>
+<h2 class="text-center">{{ post.blog_title }}</h2>
+
+<div class="ml-4">
+    <!-- blog post -->
+    <div class="row">
+        <div class="col-6">
+            <p>{{ post.blog_title }}</p>
+            <p>{{ post.content }}</p>
+            <small><p>{{ post.author }}</p></small>
+            <small><p>{{ post.created_on }}</p></small>
+        </div>
+    </div>
+    <!-- post editing ability -->
+    {% if request.user.is_superuser %}
+        <div class="row mb-4 w-50">
+            <div class="col-2">
+                <small><a href="{% url 'update_post' post.id %}" class="text-success">Edit Post</a></small>
+            </div>
+            <div class="col-2">
+                <small><a href="" class="text-danger">Delete Post</a></small>
+            </div>
+        </div>
+    {% endif %}
+    <!-- back to maain blog -->
+    <div class="row mb-4">
+        <div class="col-6">
+            <button><a href="{% url 'view_blog' %}">Go back to the main blog</a></button>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

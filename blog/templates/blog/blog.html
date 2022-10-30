@@ -7,7 +7,7 @@
 <!-- create a post -->
 <div class="row mb-4 mt-4 ml-4 text-info text-center">
     <div class="col-12">
-        <button><a href="">Create post</a></button>
+        <button><a href="{% url 'create_post' %}">Create post</a></button>
     </div>
 </div>
 
@@ -32,7 +32,7 @@
         <small>{{ x.created_on }}</small>
         <div class="row">
             <div class="col-6">
-                <a href="">Read more</a>
+                <a href="{% url 'read_post' x.id %}">Read more</a>
             </div>
         </div>
         <hr>
