@@ -5,11 +5,13 @@
 <h1 class="text-center">Blog Page</h1>
 
 <!-- create a post -->
+{% if request.user.is_superuser %}
 <div class="row mb-4 mt-4 ml-4 text-info text-center">
     <div class="col-12">
         <button><a href="{% url 'create_post' %}">Create post</a></button>
     </div>
 </div>
+{% endif %}
 
 <!-- search for posts -->
     <div class="row text-right mr-3">

@@ -100,39 +100,12 @@ def update_post(request, id):
 
     return render(request, template, context)
 
+
 def delete_post(request, id):
     post = BlogPost.objects.get(id=int(id))
     post.delete()
 
     return redirect(reverse('view_blog'))
-
-
-def update_post(request, id):
-    """ View to create a blog post """
-
-    post = BlogPost.objects.get(id=int(id))
-
-    current_info = {
-        'blog_title': post.blog_title,
-        'content': post.content,
-    }
-    form = BlogForm(initial=current_info)
-
-    if request.method == 'POST':
-        form = BlogForm(request.POST, instance=post)
-        if form.is_valid:
-            form.save()
-            messages.success(request, 'Blog post successfully updated')
-            return redirect(reverse('view_blog'))
-        else:
-            messages.error(request, 'There was an error with the form. Please try again.')
-    
-    template = 'blog/update_post.html'
-    context = {
-          'form': form,
-      }
-
-    return render(request, template, context)
 
 
 def edit_comment(request, id):
@@ -150,8 +123,8 @@ def edit_comment(request, id):
         if comment_form.is_valid:
             comment_form.save()
             return redirect(reverse('view_blog'))
-        else:
-            return redirect(redirect('home'))
+
+        comment_form = CommentForm()
 
     template = 'blog/edit_comment.html'
     context = {
@@ -159,3 +132,9 @@ def edit_comment(request, id):
     }
 
     return render(request, template, context)
+
+def delete_comment(request, id):
+    comment = PostComment.objects.get(id=int(id))
+    comment.delete()
+
+    return redirect(reverse('view_blog'))
