@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
+
+import dj_database_url  # for deploy
+
 import os  # dev
 if os.path.exists("env.py"):
     import env  # dev
@@ -22,8 +25,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-d^9((45nj2%&*tezo(7@t00kc&g&%!9yf%p=n0$m=m3r7f54el'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -176,6 +177,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FREE_DELIVERY_THRESHOLD = 29.99
 STANDARD_DELIVERY_PERCENTAGE = 10
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
 
 STRIPE_CURRENCY = 'gbp'
