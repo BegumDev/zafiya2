@@ -22,7 +22,7 @@
                 <small><a href="{% url 'update_post' post.id %}" class="text-success">Edit Post</a></small>
             </div>
             <div class="col-2">
-                <small><a href="" class="text-danger">Delete Post</a></small>
+                <small><a href="{% url 'delete_post' post.id %}" class="text-danger">Delete Post</a></small>
             </div>
         </div>
     {% endif %}
