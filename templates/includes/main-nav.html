@@ -10,10 +10,9 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="">Best Sellers</a>
-                    <a class="dropdown-item" href="">Room Sprays</a>
-                    <a class="dropdown-item" href="">Candles & Wax Melts</a>
-                    <a class="dropdown-item" href="">Sale</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=candles">Candles</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=diffusers">Diffusers</a>
+                    <a class="dropdown-item" href="{% url 'products' %}?category=candles,diffusers">Shop All</a>
                 </div>
             </li>
         </ul>
