@@ -40,9 +40,15 @@
                     <div class="col-6">
                         <p><strong>Price</strong>: £{{ product.price }}</p>
                     </div>
-                    <div class="col-6">
-                        <p><strong>Rating</strong>: {{ product.rating }}</p>
-                    </div>
+                    {% if product.rating %}
+                        <div class="col-6">
+                            <p><strong>Rating</strong>: {{ product.rating }}</p>
+                        </div>
+                    {% else %}
+                        <div class="col-6">
+                            <p>Rating: -</p>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="row">
                     <div class="col-12">

@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+from .forms import ProductForm
 from .models import Product, Category
 from django.db.models import Q
 
@@ -45,3 +46,23 @@ def product_details(request, product_id):
     }
     
     return render(request, 'products/product_details.html', context)
+
+
+def add_product(request):
+    """ A view for admin to add a product """
+    if request.method == 'POST':
+        form = ProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('add_product'))    
+        else:
+            messages.error(request, "Adding product failed. Please check the form")
+    else:
+        form = ProductForm()
+
+    template = 'products/add_product.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
