@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-# import dj_database_url  # for deploy
+import dj_database_url  # for deploy
 
 import os  # dev
 # if os.path.exists("env.py"):
