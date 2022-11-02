@@ -118,6 +118,7 @@ def update_post(request, id):
 def delete_post(request, id):
     post = BlogPost.objects.get(id=int(id))
     post.delete()
+    messages.success(request, 'Successfully deleted post.')
 
     return redirect(reverse('view_blog'))
 
@@ -136,6 +137,7 @@ def edit_comment(request, id):
         comment_form = CommentForm(request.POST, instance=old_comment)
         if comment_form.is_valid:
             comment_form.save()
+            messages.success(request, 'Comment successfully updated')
             return redirect(reverse('view_blog'))
 
         comment_form = CommentForm()
@@ -150,5 +152,6 @@ def edit_comment(request, id):
 def delete_comment(request, id):
     comment = PostComment.objects.get(id=int(id))
     comment.delete()
+    messages.success(request, 'Successfully deleted comment.')
 
     return redirect(reverse('view_blog'))
