@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib import messages
@@ -59,7 +60,7 @@ def read_post(request, id):
     }
     return render(request, template, context)
 
-
+@login_required
 def create_post(request):
     """ View to create a blog post """
 
@@ -86,7 +87,7 @@ def create_post(request):
 
     return render(request, template, context)
 
-
+@login_required
 def update_post(request, id):
     """ View to create a blog post """
 
@@ -114,7 +115,7 @@ def update_post(request, id):
 
     return render(request, template, context)
 
-
+@login_required
 def delete_post(request, id):
     post = BlogPost.objects.get(id=int(id))
     post.delete()
