@@ -67,7 +67,7 @@ def create_post(request):
 
     if request.method == 'POST':
         form = BlogForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             data = form.save(commit=False)
             data.author = User(id=request.user.id)
             data.save()
@@ -100,7 +100,7 @@ def update_post(request, id):
 
     if request.method == 'POST':
         form = BlogForm(request.POST, instance=post)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             messages.success(request, 'Blog post successfully updated')
             return redirect(reverse('view_blog'))
@@ -135,7 +135,7 @@ def edit_comment(request, id):
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST, instance=old_comment)
-        if comment_form.is_valid:
+        if comment_form.is_valid():
             comment_form.save()
             messages.success(request, 'Comment successfully updated')
             return redirect(reverse('view_blog'))
