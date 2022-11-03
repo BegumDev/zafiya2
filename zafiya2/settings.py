@@ -33,8 +33,6 @@ DEBUG = 'DEVELOPMENT' in os.environ  # deploy
 
 ALLOWED_HOSTS = ['zafiya2.herokuapp.com', 'localhost']
 
-# DEBUG = True  # dev
-
 
 # Application definition
 
