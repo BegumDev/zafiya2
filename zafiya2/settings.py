@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = 'DEVELOPMENT' in os.environ  # deploy
+DEBUG = 'DEVELOPMENT' in os.environ  # deploy
 
 # DEBUG = True  # dev only
 
