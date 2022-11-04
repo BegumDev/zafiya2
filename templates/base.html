@@ -57,7 +57,7 @@
             <!-- logo -->
             <div class="col-12 col-lg-3 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link">
-                    <h2>zafiya</h2>
+                    <h2>zafiya2</h2>
                     <p class="text-uppercase">home <strong>fragrances</strong></p>
                 </a>
             </div>
@@ -109,6 +109,13 @@
                                 {% endif %}
                             </a>
                         </li>
+                        {% if request.user.is_authenticated %}
+                        <div class="row">
+                            <div class="col-6 float-right">
+                                <small><p>Logged in as: {{ user.username }}</p></small>
+                            </div>
+                        </div>
+                    {% endif %}
                     </ul>
                 </div>
             </nav>
