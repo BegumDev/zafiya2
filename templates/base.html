@@ -121,14 +121,6 @@
                                 {% endif %}
                             </a>
                         </li>
-                        <!-- show who is logged in -->
-                        {% if request.user.is_authenticated %}
-                        <div class="row">
-                            <div class="col-6 float-right">
-                                <small><p>Logged in as: {{ user.username }}</p></small>
-                            </div>
-                        </div>
-                    {% endif %}
                     </ul>
                 </div>
             </nav>

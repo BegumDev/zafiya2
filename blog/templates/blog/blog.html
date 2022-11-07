@@ -14,20 +14,20 @@
 {% endif %}
 
 <!-- search for posts -->
-    <div class="row text-right mr-3">
-        <div class="col-12">
-            <form action="" method="GET">
-                <input class="border-black border" type="text" name="blog_search" placeholder="Search the blog">
-                <button class="btn btn-sm border-black border" type="submit"><i
-                        class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-        </div>
+<div class="row text-center">
+    <div class="col-12">
+        <form action="" method="GET">
+            <input class="border-black border" type="text" name="blog_search" placeholder="Search the blog">
+            <button class="btn btn-sm border-black border" type="submit"><i
+                    class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
     </div>
+</div>
 
 <!-- View all blog posts -->
-<div class="row ml-4">
+<div class="row m-4">
     {% for x in posts %}
-    <div class="col-3">
+    <div class="col-12 col-md-6 col-lg-4">
         <h4>{{ x.blog_title }}</h4>
         <p>{{ x.content }}</p>
         <small>{{ x.author }}</small>

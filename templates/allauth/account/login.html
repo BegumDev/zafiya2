@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<h1 class="m-3">{% trans "Sign In" %}</h1>
+<h1 class="m-5">{% trans "Sign In" %}</h1>
 
 {% get_providers as socialaccount_providers %}
 
@@ -29,11 +29,11 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
-<p class="m-3">{% blocktrans %}If you have not created an account yet, then please
+<p class="m-5">{% blocktrans %}If you have not created an account yet, then please
 <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
 
-<div class="w-50 m-3">
+<div class="w-50 m-5">
   <form class="login " method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}
     {{ form | crispy }}
