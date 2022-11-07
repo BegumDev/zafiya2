@@ -8,25 +8,18 @@
         <h2 class="text-center mt-3 mb-3"> Shop All Products</h2>
     </div>
 </div>
-
-<!-- sort and filter -->
-<div class="row">
-    <div class="col-6"></div>
-    <div class="col-6"></div>
-</div>
-
 {% endblock %}
 
 {% block content %}
 
-<section class="bg-light">
+<section class="bg-light p-3">
     <div class="container-fluid">
         <div class="row">
             <!-- product card -->
             {% for product in products %}
             <div class="col-12 col-md-4 col-lg-3 product-card m-2">
                 <div class="row">
-                    <div class="col-12 products-image text-center">
+                    <div class="col-12 products-image text-center m-2">
                         <img src="{{ product.image.url }}" alt="{{ product.name }}">
                     </div>
                 </div>
@@ -59,7 +52,11 @@
                         <p><i class="fa-solid fa-tag"></i> {{ product.category.visual_name }}</p>
                     </div>
                 </div>
-                <a href="{% url 'product_details' product.id %}"><button>view details</button></a>
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <a href="{% url 'product_details' product.id %}"><button class="mb-3">view details</button></a>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>

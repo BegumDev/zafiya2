@@ -56,26 +56,35 @@
         <div class="row d-none d-lg-flex pt-lg-3">
             <!-- logo -->
             <div class="col-12 col-lg-3 text-center text-lg-left">
-                <a href="{% url 'home' %}" class="nav-link">
-                    <h2>zafiya2</h2>
+                <a href="{% url 'home' %}" class="text-dark nav-link">
+                    <strong><h2>zafiya2</h2></strong>
                     <p class="text-uppercase">home <strong>fragrances</strong></p>
                 </a>
             </div>
             <!-- search form -->
-            <div class="col-12 col-lg-4 text-center">
+            <div class="col-12 col-lg-3 mt-5">
                 <form action="{% url 'products' %}" method="GET">
                     <input class="border-black border" type="text" name="search" placeholder="Search the store">
-                    <button class="btn btn-sm border-black border" type="submit"><i
-                            class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="btn btn-sm border-black border" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
-            <!-- right menu (account and basket)-->
-            <nav class=" col-12 col-lg-5 navbar navbar-expand-lg navbar-light bg-light">
+            <!-- right menu-->
+            <nav class=" col-12 col-lg-6 navbar navbar-expand-lg navbar-light">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <!-- home -->
                         <li class="nav-item active">
                             <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <!-- products -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Products</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{% url 'products' %}?category=candles">Candles</a>
+                                <a class="dropdown-item" href="{% url 'products' %}?category=diffusers">Diffusers</a>
+                                <a class="dropdown-item" href="{% url 'products' %}?category=candles,diffusers">Shop All</a>
+                            </div>
                         </li>
                         <!-- account -->
                         <li class="nav-item dropdown">
@@ -100,6 +109,9 @@
                         </li>
                         <!-- basket -->
                         <li class="nav-item active">
+                            
+                        </li>
+                        <li class="nav-item active">
                             <a class="nav-link" href="{% url 'view_bag' %}">
                                 Basket
                                 {% if grand_total %}
@@ -109,6 +121,7 @@
                                 {% endif %}
                             </a>
                         </li>
+                        <!-- show who is logged in -->
                         {% if request.user.is_authenticated %}
                         <div class="row">
                             <div class="col-6 float-right">
@@ -121,7 +134,6 @@
             </nav>
         </div>
         {% include 'includes/mobile-nav.html' %}
-        {% include 'includes/main-nav.html' %}
     </header>
 
     <!-- free delivery banner -->
@@ -130,7 +142,7 @@
             <h5 class="text-uppercase mt-2 text-light">free delivery on orders over £{{ free_delivery_threshold }}!</h5>
         </div>
     </div>        
-
+    <!-- messages -->
     {% if messages %}
         <div class="message-container">
             {% for message in messages %}
@@ -154,6 +166,21 @@
 
     {% block content %}
     {% endblock %}
+
+    <footer>
+        <div class="row text-center footer-links">
+            <div class="col-12">
+                <a href="https://en-gb.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram-square"></i></a>
+                <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a>
+            </div>
+            <div class="col-12">
+                <span>&copy; <strong>zafiya2 2022</strong></span>
+            </div>
+        </div>
+    </footer>
 
     {% block postloadjs %}
     <script type="text/javascript">

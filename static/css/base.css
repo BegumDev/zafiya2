@@ -79,3 +79,8 @@ section{
     height: 50px;
     width: 50px;
 }
+
+.footer-links {
+    font-size: 20px;
+    margin: auto;
+}
