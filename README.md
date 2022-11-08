@@ -62,13 +62,14 @@ This is a fictational store with fully operational payment processing facilites.
         2. Admin can create, edit or delete a blogpost.
         3. Any logged in user can create, update and delete their own comments to a blogpost.
         4. Any user can search through the blogpost.
+    
+    * My Profile Page:
+        1. Registered users can store their delivery details and update it too.
+        2. Registered users can view their order history.
 
     * Admin Access Page;
         1. Admin can add products from a dedicated page which is not viewable to non superusers.
 
-    * My Profile Page:
-        1. Registered users can store their delivery details and update it too.
-        2. Registered users can view their order history.
     
 * ### Future Features
     * Due to time constraints, the following features could not be added but will be enabled in the future;
@@ -134,32 +135,58 @@ This is a fictational store with fully operational payment processing facilites.
 ## Testing
 ***
 * ### Testing user stories from user experience (UX).
-    - Registered Users;
-        * #### Aim 1 - 
-            - Result - 
-                1. 
-                2. 
-                3. 
-                4. 
-                5. 
-        * #### Aim 2 - 
-            - Result - 
+    - Unregistered User goals
+        * #### Aim 1 - "I want to be able to add and adjust items within my shopping bag."
+            - Test; 
+            Adding an item;
+                1. Go to the products page.
+                2. Click 'view details' from the desired item. This will guide the user to the products details page.
+                3. Either type straight into the input box - or use the increment or decrement button - to select the quantity of the item intended.
+                4. Click 'add to bag' to place the item and quantity into the cart.
+                5. If successfully added, a pop up note will appear in the top right hand corner.
+            RESULT: PASS.
+            Adjusting an item;
+                1. Click on the basket, this will guide the user to the cart.
+                2. To increase/decrease the quantity - click on the add/minus button.
+                3. Click 'update.'
+                4. Monetary amount adjusts accordingly aswell as the delivery amount.
+                5. A confirmation note pops up in the toast message.
+                6. Clicking 'remove' or setting quantity removes the item from the bag.
+            RESULT: PASS.
+                
+        * #### Aim 2 - "I want to be able to complete a purchase without having to log in."
+            - Test; - 
                 1. 
                 2. 
                 3. 
                 4. 
                 5. 
 
-    - Unregistered User goals
-        * #### Aim 1 - 
-            - Result - 
+        * #### Aim 3 - "I want to be able to search products throughout the store."
+            - Test;
+                1. Type the intended keyword into the search box at the top of the screen and click enter.
+                2. Any product or description containing the keyword will display.
+                3. Click the home button to reset.
+            RESULT: PASS.
+            
+    - Registered Users;
+        * #### Aim 1 - "I want to be able to register an account that stores my details."
+            - Test; - 
                 1. 
                 2. 
                 3. 
                 4. 
                 5. 
-        * #### Aim 2 - 
-            - Result - 
+        * #### Aim 2 - "I want to be able to see my past orders within my profile."
+            - Test; - 
+                1. 
+                2. 
+                3. 
+                4. 
+                5. 
+
+        * #### Aim 2 - "I want to be able to add and adjust comments to the blog."
+            - Test; - 
                 1. 
                 2. 
                 3. 
@@ -168,14 +195,14 @@ This is a fictational store with fully operational payment processing facilites.
         
     - Admin Goals
         * #### Aim 1 - 
-            - Result - 
+            - Test; - 
                 1. 
                 2. 
                 3. 
                 4. 
                 5. 
         * #### Aim 2 - 
-            - Result - 
+            - Test; - 
                 1. 
                 2. 
                 3. 
@@ -183,24 +210,24 @@ This is a fictational store with fully operational payment processing facilites.
                 5. 
         
 * ### Code validation.
-    <details><summary>HTML Validation result:</summary>
+    <details><summary>HTML Validation Test;:</summary>
 
-    ![HTML Validation result]()
+    ![HTML Validation Test;]()
     </details>
 
     <details><summary>CSS Validation:</summary>
 
-    ![CSS Validation result]()
+    ![CSS Validation Test;]()
     </details>
 
     <details><summary>JSHint Validation:</summary>
 
-    ![JSHint Validation result]()
+    ![JSHint Validation Test;]()
     </details>
     
-    <details><summary>PEP 8 Results:</summary>
+    <details><summary>PEP 8 Test;s:</summary>
 
-    ![PEP8 validation result]()
+    ![PEP8 validation Test;]()
 
     </details>
 
