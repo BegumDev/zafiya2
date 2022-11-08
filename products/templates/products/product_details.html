@@ -8,85 +8,107 @@
 {% block content %}
 
 <section>
-    <h1 class="text-center mb-3">product details page</h1>
+    <h1 class="text-center mt-3 mb-3">{{ product.name }}</h1>
 
-    <div class="col-12 product-card m-2">
-        <div class="row">
-            <div class="col-12 products-image text-center mt-2">
+    <div class="row">
+        <div class="col-6">
+            <div class="products-image text-center mt-2">
                 <img src="{{ product.image.url }}" alt="{{ product.name }}">
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12 mt-2">
-                <h4>{{ product.name }}</h4>
+            {% if request.user.is_superuser %}
+            <div class="row mt-5">
+                <div class="col-6">
+                    <small><a href="{% url 'edit_product' product.id %}" class="text-success">Edit Product</a></small>
+                </div>
+                <div class="col-6">
+                    <small><a href="{% url 'delete_product' product.id %}" class="text-danger">Delete Product</a></small>
+                </div>
             </div>
+            {% endif %}
         </div>
-        <hr class="mt-0 mb-1">
-        <div class="row">
-            <div class="col-12">
-                <small><p>{{ product.description }}</p></small>
+        <div class="col-6">
+            <div class="row">
+                <div class="col-12 mt-2">
+                    <h4>{{ product.name }}</h4>
+                    <hr class="mt-0 mb-1">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-6">
-                <p><strong>Price</strong>: £{{ product.price }}</p>
+            <div class="row">
+                <div class="col-12">
+                    <small>
+                        <p>{{ product.description }}</p>
+                    </small>
+                </div>
             </div>
-            {% if product.rating %}
+            <div class="row">
+                <div class="col-12">
+                    <p><i class="fa-solid fa-tag"></i> {{ product.category.visual_name }}</p>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <p><strong>Price</strong>: £{{ product.price }}</p>
+                </div>
+                {% if product.rating %}
                 <div class="col-6">
                     <p><strong>Rating</strong>: {{ product.rating }}</p>
                 </div>
-            {% else %}
+                {% else %}
                 <div class="col-6">
                     <p>Rating: -</p>
                 </div>
-            {% endif %}
-            {% if request.user.is_superuser %}
-                <small><a href="{% url 'edit_product' product.id %}"><button>Edit Product</button></a></small>
-                <small><a href="{% url 'delete_product' product.id %}"><button>Delete Product</button></a></small>
-            {% endif %}
-        </div>
-
-        <!-- form to add quantity to the bag -->
-        <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
-            {% csrf_token %}
-            <div class="form-row">
+                {% endif %}
+            </div>
+            <div class="row">
                 <div class="col-12">
-                    <p>Quantity: </p>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <!-- decrease the qty -->
-                            <div class="input-group-prepend">
-                                <button class="decrement-qty btn btn-sm" data-item_id="{{ product.id }}" id="decrement-qty_{{ product.id }}">
-                                    <i class="fas fa-minus fa-sm"></i>
-                                </button>
-                            </div>
-                            <!-- actual qty -->
-                            <input type="number" class="form-control qty-input" name="quantity" value="1" min="1" max="99"
-                                data-item-id="{{ product.id }}" id="id_qty_{{ product.id }}">
-                            <!-- increase qty -->
-                            <div class="input-group-append">
-                                <button class="increment-qty btn btn-sm" data-item_id="{{ product.id }}" id="increment-qty_{{ product.id }}">
-                                    <i class="fas fa-plus fa-sm"></i>
-                                </button>
+                    <!-- form to add quantity to the bag -->
+                    <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col-12">
+                                <p>Quantity: </p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <!-- decrease the qty -->
+                                        <div class="input-group-prepend">
+                                            <button class="decrement-qty btn btn-sm" data-item_id="{{ product.id }}"
+                                                id="decrement-qty_{{ product.id }}">
+                                                <i class="fas fa-minus fa-sm"></i>
+                                            </button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <!-- actual qty -->
+                                                <input type="number" class="form-control qty-input" name="quantity" value="1"
+                                                min="1" max="99" data-item-id="{{ product.id }}"
+                                                id="id_qty_{{ product.id }}">
+                                            </div>
+                                        </div>
+                                        <!-- increase qty -->
+                                        <div class="input-group-append">
+                                            <button class="increment-qty btn btn-sm" data-item_id="{{ product.id }}"
+                                                id="increment-qty_{{ product.id }}">
+                                                <i class="fas fa-plus fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-md btn-secondary" value="add to bag">
                             </div>
                         </div>
-                    </div>
+                        <a href="{% url 'products' %}" class=" mt-3 mb-3 btn btn-md btn-primary">
+                            <i class="fa-solid fa-chevron-left"></i>
+                            <span>Keep shopping</span>
+                        </a>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
                 </div>
             </div>
-
-            <input type="submit" class="btn btn-md btn-secondary" value="add to bag">
-            <a href="{% url 'products' %}" class="btn btn-md btn-primary">
-                <i class="fa-solid fa-chevron-left"></i>
-                <span>Keep shopping</span>
-            </a>
-            <input type="hidden" name="redirect_url" value="{{ request.path }}">
-        </form>
-
-        <div class="row">
-            <div class="col-12">
-                <p><i class="fa-solid fa-tag"></i> {{ product.category.visual_name }}</p>
-            </div>
         </div>
+    </div>
+
+
     </div>
 </section>
 

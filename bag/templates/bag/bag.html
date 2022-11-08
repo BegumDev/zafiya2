@@ -13,7 +13,7 @@
 <section>
     <!-- basket total summary -->
     <div class="row">
-        <div class="col-6">
+        <div class="col-6 mt-3 mb-3">
             <h4><strong>Grand Total: </strong>
                 {% if grand_total %}
                 £{{ grand_total|floatformat:2 }}
@@ -79,8 +79,7 @@
                         </div>
                     </form>
                     <a class="update-link text-info">Update</a>
-                    <a class="remove-link float-right text-danger"
-                        id="remove_{{ item.item_id }}">Remove</a>
+                    <a class="remove-link float-right text-danger" id="remove_{{ item.item_id }}">Remove</a>
                 </td>
                 <td>
                     <p><strong>£{{ item.product.price | calc_subtotal:item.quantity }}</strong></p>
@@ -114,7 +113,8 @@
             </div>
             <!-- or checkout button -->
             <div class="col-6 text-right">
-                <a href="{% url 'checkout' %}"><button class="btn btn-md bg-secondary text-uppercase">Secure Checkout</button></a>
+                <a href="{% url 'checkout' %}"><button class="btn btn-md bg-secondary text-uppercase">Secure
+                        Checkout</button></a>
             </div>
         </div>
 
@@ -136,25 +136,27 @@
 {% endblock %}
 
 {% block postloadjs %}
-    {{ block.super }}
-    {% include 'products/includes/qty_input_script.html' %}
+{{ block.super }}
+{% include 'products/includes/qty_input_script.html' %}
 
 <script type="text/javascript">
-    $('.update-link').click(function(e) {
+    $('.update-link').click(function (e) {
         var form = $(this).prev('.update-form');
         form.submit();
     });
 
-    $('.remove-link').click(function(e) {
+    $('.remove-link').click(function (e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
         var url = `/bag/remove/${itemId}/`;
-        var data = {'csrfmiddlewaretoken': csrfToken};
+        var data = {
+            'csrfmiddlewaretoken': csrfToken
+        };
 
         $.post(url, data)
-         .done(function() {
-            location.reload();
-        });
+            .done(function () {
+                location.reload();
+            });
     });
 </script>
 

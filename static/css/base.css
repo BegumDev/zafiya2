@@ -92,11 +92,6 @@ section {
 
 @media screen and (min-width:426px) and (max-width:1024px) {
 
-    .sign-up-form,
-        {
-        width: 60%;
-    }
-
     .add-post-form,
     .update-post-form,
     .update-comment {

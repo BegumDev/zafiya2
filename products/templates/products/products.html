@@ -43,8 +43,14 @@
                         </div>
                     {% endif %}
                     {% if request.user.is_superuser %}
-                    <small><a href="{% url 'edit_product' product.id %}"><button>Edit Product</button></a></small>
-                    <small><a href="{% url 'delete_product' product.id %}"><button>Delete Product</button></a></small>
+                    <div class="row m-2">
+                        <div class="col-6">
+                            <small><a href="{% url 'edit_product' product.id %}" class="text-success">Edit</a></small>
+                        </div>
+                        <div class="col-6">
+                            <small><a href="{% url 'delete_product' product.id %}" class="text-danger">Delete</a></small>
+                        </div>
+                    </div>
                     {% endif %}
                 </div>
                 <div class="row">
