@@ -1,4 +1,4 @@
-html{
+html {
     height: 100%;
     width: 100%;
 }
@@ -15,42 +15,42 @@ body {
     height: 280px;
 }
 
-.fragrance-card{
+.fragrance-card {
     width: 300px;
     height: 300px;
 }
 
-.fragrance-card img{
+.fragrance-card img {
     width: 250px;
     height: 250px;
 }
 
-.blog{
+.blog {
     height: 600px;
 }
 
-footer{
+footer {
     height: 60px;
 }
 
-section{
+section {
     height: auto;
     width: 80%;
     margin: 0 auto;
 }
 
-.product-card{
+.product-card {
     width: 250px;
     height: auto;
     border: 2px solid #7777;
 }
 
-.products-image img{
+.products-image img {
     height: 150px;
     width: 150px;
 }
 
-.basket-image img{
+.basket-image img {
     height: 150px;
     width: 150px;
 }
@@ -75,7 +75,7 @@ section{
     height: 2px;
 }
 
-.bag-img img{
+.bag-img img {
     height: 50px;
     width: 50px;
 }
@@ -88,17 +88,19 @@ section{
 /* ---------------- media queries ---------------- */
 
 /* mobile screens */
+@media screen and (max-width:425px) {}
+
 @media screen and (min-width:426px) and (max-width:1024px) {
-    .sign-up-form, {
+
+    .sign-up-form,
+        {
         width: 60%;
     }
 
-    .add-post-form, .update-post-form {
+    .add-post-form,
+    .update-post-form,
+    .update-comment {
         width: 70%;
     }
 
-}
-
-@media screen and (min-width:426px) and (max-width:1024px) {
-    
 }

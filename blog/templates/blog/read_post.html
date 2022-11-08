@@ -38,11 +38,11 @@
                     <p class="text-danger">"{{ x.comment }}"</p>
                     <small><p class="text-info">comment by: {{ x.comment_author }}</p></small>
                     <small><p class="text-danger">{{ x.date }}</p></small>
-                    <hr>
                     {% if request.user == x.comment_author %}
                         <small><a class="btn btn-sm btn-info" href="{% url 'edit_comment' x.id %}">Edit</a></small>
                         <small></small><a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
                     {% endif %}
+                    <hr>
                 </div>
             </div>
             {% endfor %}

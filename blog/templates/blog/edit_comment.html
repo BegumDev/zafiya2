@@ -3,13 +3,13 @@
 {% block content %}
 
 <!-- Update a comment -->
-<div class="row w-50 ml-3 mb-4 mt-4">
+<div class="row m-4 update-comment">
     <div class="col-12">
         <p>Please fill out the details to update your comment.</p>
         <form method="POST" action="">
             {% csrf_token %}
             <fieldset class="rounded">
-                <legend class="fieldset-label">Details</legend>
+                <legend class="fieldset-label">Update Comment</legend>
                     {{ comment_form.comment | as_crispy_field }}
             </fieldset>
             <button type="submit">Update Comment</button>
