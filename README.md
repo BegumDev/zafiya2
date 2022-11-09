@@ -115,22 +115,11 @@ This is a fictational store with fully operational payment processing facilites.
         - Used to create icons for enhanced asthetics.
 
 * ### Database structure.
-    * PostgreSQL.          
-        - The database is structured into 3 models;
-            1. Example Model.
-                - How is it utilised?
-                    - 
-                    - 
-                    - 
-                    - 
-            2. Example Model.
-                - How is it utilised?
-                    - 
-                    - 
-                    - 
-                    - 
-    * Issues faced
-        - Any issues faced?
+    * PostgreSQL.
+    <details><summary>PostgreSQL Model Diagram:</summary>
+
+    ![PostgreSQL Model Diagram](static/docs/images/models-diagram.jpg)
+    </details>        
 
 ## Testing
 ***
