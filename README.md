@@ -172,6 +172,9 @@ This is a fictational store with fully operational payment processing facilites.
 
 ## Deployment
 ***
+1. Create Heroku App
+2. Connect to AWS
+3. Connect Gmail
 
 
 ## Credits
