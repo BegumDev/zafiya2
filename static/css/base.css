@@ -14,13 +14,6 @@ body {
     height: 280px;
 }
 
-/* .main-hero {
-    background: url('/media/hero.jpg') no-repeat;
-    background-size: 100%;
-    width: 100%;
-    height: 280px;
-} */
-
 .fragrance-card {
     width: 300px;
     height: 300px;
@@ -94,6 +87,23 @@ section {
 .carousel-image img {
     height: 200px;
     width: 180px;
+}
+
+.shop-by img {
+    height: 250px;
+    width: 250px;
+}
+
+.shop-by h4 {
+    color: #000000;
+}
+
+.shop-by a {
+    text-decoration: none;
+}
+
+.footer-links a {
+    color: #000000;
 }
 /* ---------------- media queries ---------------- */
 

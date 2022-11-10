@@ -14,5 +14,21 @@
           "name":"candles",
           "visual_name":"Candles"
        }
-    }
+    },
+    {
+      "pk":3,
+      "model":"products.category",
+      "fields":{
+         "name":"room_sprays",
+         "visual_name":"Room Sprays"
+      }
+   },
+   {
+      "pk":4,
+      "model":"products.category",
+      "fields":{
+         "name":"carpet_fresheners",
+         "visual_name":"Carpet Fresheners"
+      }
+   }
  ]

@@ -24,6 +24,10 @@ def view_blog(request):
             queries = Q(blog_title__icontains=blog_search) | Q(content__icontains=blog_search)
             posts = posts.filter(queries)
 
+    template = {
+        
+    }
+
     context = {
         'posts': posts,
         'search_for': blog_search,

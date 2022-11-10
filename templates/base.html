@@ -83,6 +83,8 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{% url 'products' %}?category=candles">Candles</a>
                                 <a class="dropdown-item" href="{% url 'products' %}?category=diffusers">Diffusers</a>
+                                <a class="dropdown-item" href="{% url 'products' %}?category=room_sprays">Room Sprays</a>
+                                <a class="dropdown-item" href="{% url 'products' %}?category=carpet_fresheners">Carpet Fresheners</a>
                                 <a class="dropdown-item" href="{% url 'products' %}?category=candles,diffusers">Shop All</a>
                             </div>
                         </li>
@@ -159,17 +161,25 @@
     {% block content %}
     {% endblock %}
 
-    <footer>
-        <div class="row text-center footer-links">
-            <div class="col-12">
+    <footer class="bg-light">
+        <div class="row footer-links text-center">
+            <div class="col-4">
                 <a href="https://en-gb.facebook.com/" target="_blank"><i class="fa-brands fa-facebook"></i></a>
                 <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-instagram-square"></i></a>
                 <a href="https://twitter.com/" target="_blank"><i class="fa-brands fa-twitter"></i></a>
                 <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
                 <a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a>
             </div>
-            <div class="col-12">
+            <div class="col-4">
                 <span>&copy; <strong>zafiya2 2022</strong></span>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
+                        <strong><h5>Email:</h5></strong>
+                        <h6>info@zafiya2.com</h6>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>

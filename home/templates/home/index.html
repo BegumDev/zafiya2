@@ -17,9 +17,9 @@
     </div>
 </div> -->
 
-<!-- shop by fragrance -->
+<!-- Banner-->
 <div class="row">
-    <div class="col-12 text-center">
+    <div class="col-12 text-center m-4">
         <h2>Home of luxury fragrances...</h2>
     </div>
 </div>
@@ -33,8 +33,9 @@
                     <h3 class="text-light m-2">Luxury Fragrances</h3>
                 </div>
                 <div class="col-3">
-                    <img class="d-block" src="https://images.unsplash.com/photo-1595055301976-21a16cf33e67?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NTd8MTMxSThmUHZuZVV8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                alt="First slide">
+                    <img class="d-block"
+                        src="https://images.unsplash.com/photo-1595055301976-21a16cf33e67?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NTd8MTMxSThmUHZuZVV8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                        alt="First slide">
                 </div>
             </div>
         </div>
@@ -44,8 +45,9 @@
                     <h3 class="text-light mt-2">Trusted and Established</h3>
                 </div>
                 <div class="col-3">
-                    <img class="d-block" src="https://images.unsplash.com/photo-1625479968533-de325eb299a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlmZnVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
-                alt="Second slide">
+                    <img class="d-block"
+                        src="https://images.unsplash.com/photo-1625479968533-de325eb299a4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8ZGlmZnVzZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+                        alt="Second slide">
                 </div>
             </div>
         </div>
@@ -55,8 +57,9 @@
                     <h3 class="text-light mt-2">20% Sale</h3>
                 </div>
                 <div class="col-3">
-                    <img class="d-block" src="https://images.unsplash.com/photo-1596433809550-900d24a4cd9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NTF8MTMxSThmUHZuZVV8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
-                alt="Third slide">
+                    <img class="d-block"
+                        src="https://images.unsplash.com/photo-1596433809550-900d24a4cd9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8NTF8MTMxSThmUHZuZVV8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                        alt="Third slide">
                 </div>
             </div>
         </div>
@@ -71,14 +74,45 @@
     </a>
 </div>
 
-<!-- blog -->
-<div>
-    <div class="row blog bg-light">
-        <div class="col-12">
-            <h4 class="text-center">Blog Articles</h4>
-        </div>
+<!-- shop by categories -->
+<div class="row">
+    <div class="col-12 text-center m-4">
+        <h2>Shop by type...</h2>
     </div>
 </div>
+<div class="row m-3 text-center">
+    <div class="col-12 col-md-6 col-lg-3 shop-by">
+        <a class="" href="{% url 'products' %}?category=candles">
+            <h4>Candles</h4>
+            <img src="https://www.grandillusions.co.uk/wp-content/uploads/2022/05/BEC601-GP-300x300.jpg"
+                alt="Candle">
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 shop-by">
+        <a class="" href="{% url 'products' %}?category=diffusers">
+            <h4>Diffusers</h4>
+            <img src="https://images.bloomingdalesassets.com/is/image/BLM/products/2/optimized/12485472_fpx.tif?$2014_BROWSE_FASHION$&fmt=jpeg&op_usm=0.7,1.0,0.5,0&resMode=sharp2&qlt=85,0&wid=280&hei=350"
+                alt="Diffuser">
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 shop-by">
+        <a class="" href="{% url 'products' %}?category=room_sprays">
+            <h4>Room Sprays</h4>
+            <img src="https://cdn11.bigcommerce.com/s-croon/images/stencil/1280x1280/products/899/2140/F6501576-2E59-410D-B925-87A33133AAAE__13237.1636139088.jpg?c=2"
+                alt="Room Spray">
+        </a>
+    </div>
+    <div class="col-12 col-md-6 col-lg-3 shop-by">
+        <a class="" href="{% url 'products' %}?category=carpet_fresheners">
+            <h4>Carpet Fresheners</h4>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTieKJUIwEWSUEMbR58r0lsD9gJTYCliQ0J3Q&usqp=CAU"
+                alt="Carpet Freshener">
+        </a>
+    </div>
+</div>
+
+
+
 
 
 {% endblock %}
