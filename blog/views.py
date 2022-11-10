@@ -35,7 +35,6 @@ def view_blog(request):
     return render(request, 'blog/blog.html', context)
 
 
-
 def read_post(request, id):
     """ View individual post and be able to comment on them"""
 
@@ -64,6 +63,7 @@ def read_post(request, id):
     }
     return render(request, template, context)
 
+
 @login_required
 def create_post(request):
     """ View to create a blog post """
@@ -90,6 +90,7 @@ def create_post(request):
       }
 
     return render(request, template, context)
+
 
 @login_required
 def update_post(request, id):
@@ -119,6 +120,7 @@ def update_post(request, id):
 
     return render(request, template, context)
 
+
 @login_required
 def delete_post(request, id):
     post = BlogPost.objects.get(id=int(id))
@@ -128,9 +130,11 @@ def delete_post(request, id):
     return redirect(reverse('view_blog'))
 
 
+@login_required
 def edit_comment(request, id):
 
-    old_comment = PostComment.objects.get(id=int(id))
+    old_comment = get_object_or_404(PostComment, id=int(id))
+    user = request.user
 
     current_info = {
         'comment': old_comment.comment,
@@ -140,12 +144,14 @@ def edit_comment(request, id):
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST, instance=old_comment)
-        if comment_form.is_valid():
-            comment_form.save()
-            messages.success(request, 'Comment successfully updated')
-            return redirect(reverse('view_blog'))
-
-        comment_form = CommentForm()
+        if user == old_comment.comment_author:
+            if comment_form.is_valid():
+                comment_form.save()
+                messages.success(request, 'Comment successfully updated')
+                return redirect(reverse('view_blog'))
+            comment_form = CommentForm()
+        else:
+            messages.info(request, "Only the original author can edit this comment.")
 
     template = 'blog/edit_comment.html'
     context = {
@@ -154,9 +160,54 @@ def edit_comment(request, id):
 
     return render(request, template, context)
 
+
+
+# def edit_comment(request, id):
+
+#     old_comment = PostComment.objects.get(id=int(id))
+
+#     # get_object_or_404(id, comment_author = request.user) - query on id and user
+
+#     current_info = {
+#         'comment': old_comment.comment,
+#     }
+
+#     comment_form = CommentForm(initial=current_info)
+
+#     if request.method == 'POST':
+#         comment_form = CommentForm(request.POST, instance=old_comment)
+#         if comment_form.is_valid():
+#             comment_form.save()
+#             messages.success(request, 'Comment successfully updated')
+#             return redirect(reverse('view_blog'))
+
+#         comment_form = CommentForm()
+
+#     template = 'blog/edit_comment.html'
+#     context = {
+#           'comment_form': comment_form,
+#     }
+
+#     return render(request, template, context)
+
+@login_required
 def delete_comment(request, id):
-    comment = PostComment.objects.get(id=int(id))
-    comment.delete()
-    messages.success(request, 'Successfully deleted comment.')
+    """ a view for the author of a comment to be able to delete it """
+    comment = get_object_or_404(PostComment, id=int(id))
+    user = request.user
+
+    if user == comment.comment_author:
+        comment.delete()
+        messages.success(request, 'Successfully deleted comment.')
+    else:
+        messages.error(request, "Sorry only the original author can delete this comment")
 
     return redirect(reverse('view_blog'))
+
+
+# def delete_comment(request, id):
+#     comment = PostComment.objects.get(id=int(id))
+#     comment.delete()
+#     messages.success(request, 'Successfully deleted comment.')
+
+#     return redirect(reverse('view_blog'))
