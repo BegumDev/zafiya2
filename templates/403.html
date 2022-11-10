@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="row">
+    <div class="col-12 text-center mt-5 mb-5">
+        <h3>Oops! You're not authorised to access this page.</h3>
+        <a href="{% url 'home' %}">Click here to head back to the home page</a>
+    </div>
+</div>
+
+
+{% endblock %}
