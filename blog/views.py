@@ -38,31 +38,44 @@ def view_blog(request):
 def read_post(request, id):
     """ View individual post and be able to comment on them"""
 
-    post = BlogPost.objects.get(id=int(id))
-
-    # create a comment
-    comment_form = CommentForm()
-
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            instance = comment_form.save(commit=False)
-            instance.post = post  # attach the comment form to the post
-            instance.comment_author = request.user
-            instance.save()
-            messages.success(request, 'Added comment')
-            return redirect(reverse('read_post', args=[post.id]))
-        else:
-            messages.success(request, 'Failed to add comment')
-    else:
-        comment_form = CommentForm()
+    post = get_object_or_404(BlogPost, id=int(id))
 
     template = 'blog/read_post.html'
     context = {
         'post': post,
-        'comment_form': comment_form,
     }
     return render(request, template, context)
+
+
+# def read_post(request, id):
+#     """ View individual post and be able to comment on them"""
+
+#     post = BlogPost.objects.get(id=int(id))
+
+#     # create a comment
+#     comment_form = CommentForm()
+
+#     if request.method == 'POST':
+#         comment_form = CommentForm(request.POST)
+#         if comment_form.is_valid():
+#             instance = comment_form.save(commit=False)
+#             instance.post = post  # attach the comment form to the post
+#             instance.comment_author = request.user
+#             instance.save()
+#             messages.success(request, 'Added comment')
+#             return redirect(reverse('read_post', args=[post.id]))
+#         else:
+#             messages.success(request, 'Failed to add comment')
+#     else:
+#         comment_form = CommentForm()
+
+#     template = 'blog/read_post.html'
+#     context = {
+#         'post': post,
+#         'comment_form': comment_form,
+#     }
+#     return render(request, template, context)
+
 
 @login_required
 def create_post(request):
@@ -207,6 +220,35 @@ def delete_post(request, id):
 #     messages.success(request, 'Successfully deleted post.')
 
 #     return redirect(reverse('view_blog'))
+
+
+@login_required
+def add_comment(request, id):
+    """ a view to create a comment """
+
+    post = get_object_or_404(BlogPost, id=int(id))
+    comment_form = CommentForm()
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            instance = comment_form.save(commit=False)
+            instance.post = post  # attach the comment form to the post
+            instance.comment_author = request.user
+            instance.save()
+            messages.success(request, 'Added comment')
+            return redirect(reverse('read_post', args=[post.id]))
+        else:
+            messages.success(request, 'Failed to add comment')
+    else:
+        comment_form = CommentForm()
+    
+    template = 'blog/add_comment.html'
+    context = {
+        'post': post,
+        'comment_form': comment_form,
+    }
+    return render(request, template, context)
 
 
 @login_required

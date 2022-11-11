@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center mt-3">Add a comment</h3>
+
+<!-- Create a comment -->
+<div class="row m-4">
+    <div class="col-12">
+        <p>Please fill out the details to create a post.</p>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ comment_form | crispy }}
+            <button type="submit">Add Post</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
