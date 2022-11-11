@@ -40,6 +40,7 @@ def read_post(request, id):
 
     post = BlogPost.objects.get(id=int(id))
 
+    # create a comment
     comment_form = CommentForm()
 
     if request.method == 'POST':
@@ -63,12 +64,15 @@ def read_post(request, id):
     }
     return render(request, template, context)
 
-
 @login_required
 def create_post(request):
     """ View to create a blog post """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only authorised users can do that.')
+        return redirect(reverse('view_blog'))
 
     form = BlogForm()
+    user = request.user
 
     if request.method == 'POST':
         form = BlogForm(request.POST)
@@ -92,9 +96,40 @@ def create_post(request):
     return render(request, template, context)
 
 
+# @login_required
+# def create_post(request):
+#     """ View to create a blog post """
+
+#     form = BlogForm()
+
+#     if request.method == 'POST':
+#         form = BlogForm(request.POST)
+#         if form.is_valid():
+#             data = form.save(commit=False)
+#             data.author = User(id=request.user.id)
+#             data.save()
+
+#             messages.success(request, 'Blog post successfully created')
+#             return redirect(reverse('view_blog'))
+#         else:
+#             messages.error(request, 'There was an error with the form. Please try again.')
+#     else:
+#         form = BlogForm()
+    
+#     template = 'blog/create_post.html'
+#     context = {
+#           'form': form,
+#       }
+
+#     return render(request, template, context)
+
+
 @login_required
 def update_post(request, id):
     """ View to create a blog post """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only authorised users can do that.')
+        return redirect(reverse('view_blog'))
 
     post = BlogPost.objects.get(id=int(id))
 
@@ -121,13 +156,57 @@ def update_post(request, id):
     return render(request, template, context)
 
 
+# @login_required
+# def update_post(request, id):
+#     """ View to create a blog post """
+  
+#     post = BlogPost.objects.get(id=int(id))
+
+#     current_info = {
+#         'blog_title': post.blog_title,
+#         'content': post.content,
+#     }
+#     form = BlogForm(initial=current_info)
+
+#     if request.method == 'POST':
+#         form = BlogForm(request.POST, instance=post)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, 'Blog post successfully updated')
+#             return redirect(reverse('view_blog'))
+#         else:
+#             messages.error(request, 'There was an error with the form. Please try again.')
+    
+#     template = 'blog/update_post.html'
+#     context = {
+#           'form': form,
+#       }
+
+#     return render(request, template, context)
+
+
+
 @login_required
 def delete_post(request, id):
+    """ a view for authorised admin to delete a post """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only authorised users can do that.')
+        return redirect(reverse('view_blog'))
+
     post = BlogPost.objects.get(id=int(id))
     post.delete()
     messages.success(request, 'Successfully deleted post.')
 
     return redirect(reverse('view_blog'))
+
+
+# @login_required
+# def delete_post(request, id):        
+#     post = BlogPost.objects.get(id=int(id))
+#     post.delete()
+#     messages.success(request, 'Successfully deleted post.')
+
+#     return redirect(reverse('view_blog'))
 
 
 @login_required
@@ -190,13 +269,14 @@ def edit_comment(request, id):
 
 #     return render(request, template, context)
 
+
 @login_required
 def delete_comment(request, id):
     """ a view for the author of a comment to be able to delete it """
     comment = get_object_or_404(PostComment, id=int(id))
     user = request.user
 
-    if user == comment.comment_author:
+    if user == comment.comment_author or user.is_superuser:
         comment.delete()
         messages.success(request, 'Successfully deleted comment.')
     else:
