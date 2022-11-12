@@ -23,7 +23,7 @@ This is a fictational store with fully operational payment processing facilites.
         2. I want to be able to add, update and delete blog posts.
 - ### Design
     * #### Color Scheme
-        -  
+        -  White, Black, Dark Grey (all taken from Bootstrap)
 
     * #### Imagery
         - 
@@ -111,7 +111,7 @@ This is a fictational store with fully operational payment processing facilites.
         - Used to create icons for enhanced asthetics.
 
 * ### Database structure.
-    * PostgreSQL.
+    
     <details><summary>PostgreSQL Model Diagram:</summary>
 
     ![PostgreSQL Model Diagram](static/docs/images/models-diagram.jpg)
@@ -149,12 +149,16 @@ This is a fictational store with fully operational payment processing facilites.
 
     <details><summary>CSS Validation:</summary>
 
-    ![CSS Validation Test;]()
+    ![CSS Validation Test;](static/docs/images/css-validation.JPG)
     </details>
 
     <details><summary>JSHint Validation:</summary>
 
-    ![JSHint Validation Test;]()
+    ![JSHint Stripe JS validation Test;](static/docs/images/stripe-elements-js-test.JPG)
+
+    ![JSHint Quantity-input validation Test;](static/docs/images/qty-input-testing.JPG)
+
+    ![JSHint Update and remove items validation Test;](static/docs/images/update-remove-js.JPG)
     </details>
     
     <details><summary>PEP 8 Tests:</summary>
@@ -177,7 +181,7 @@ This is a fictational store with fully operational payment processing facilites.
         - Fix: 
 
 * ### Known errors.
-    1. 
+    1. Example.com in emails
     2. 
     3. 
 
