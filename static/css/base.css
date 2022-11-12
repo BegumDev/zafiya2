@@ -13,7 +13,7 @@ body {
     height: 280px;
 }
 
-.fragrance-card {
+/* .fragrance-card {
     width: 300px;
     height: 300px;
 }
@@ -21,7 +21,7 @@ body {
 .fragrance-card img {
     width: 250px;
     height: 250px;
-}
+} */
 
 .blog {
     height: 600px;
@@ -111,12 +111,10 @@ section {
 }
 
 .back-to-top a {
-    border: 50%;
     border: 2px solid #777777;
     text-decoration: none;
     color: #777777;
 }
-
 
 /* ---------------- media queries ---------------- */
 
@@ -144,6 +142,18 @@ section {
         width: 70%;
         display: inline;
         margin: 0 auto;
+    }
+
+    .blog-section {
+        width: 80%;
+    }
+
+    .checkout-section {
+        width: 80%;
+    }
+
+    .products-section {
+        width: 100%;
     }
 
 }
