@@ -32,19 +32,31 @@
             {% for x in post.comments.all %}
             <div class="row">
                 <div class="col-12">
-                    <p class="text-danger">"{{ x.comment }}"</p>
+                    <p class="text-dark">"{{ x.comment }}"</p>
                     <div class="row">
                         <div class="col-6 col-md-4 col-lg-3">
-                            <small><p class="text-info">comment by: {{ x.comment_author }}</p></small>
+                            <small><p class="text-dark">comment by: {{ x.comment_author }}</p></small>
                         </div>
                         <div class="col-6 col-md-4 col-lg-3">
-                            <small><p class="text-danger">Date: {{ x.date }}</p></small>
+                            <small><p class="text-dark">Date: {{ x.date }}</p></small>
                         </div>
                     </div>
 
-                    {% if request.user == x.comment_author or is.superuser %}
-                        <small><a class="btn btn-sm btn-info" href="{% url 'edit_comment' x.id %}">Edit</a></small>
-                        <small><a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
+                    {% if request.user == x.comment_author %}
+                        <div class="row">
+                            <div class="col-3">
+                                <small><a class="btn btn-sm btn-dark" href="{% url 'edit_comment' x.id %}">Edit</a></small>
+                            </div>
+                            <div class="col-3">
+                                <a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
+                            </div>
+                        </div>
+                    {% elif request.user.is_superuser %}
+                        <div class="row">
+                            <div class="col-3">
+                                <a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
+                            </div>
+                        </div>
                     {% endif %}
                     <hr>
                 </div>

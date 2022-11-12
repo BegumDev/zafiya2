@@ -93,7 +93,6 @@ def create_post(request):
             data = form.save(commit=False)
             data.author = User(id=request.user.id)
             data.save()
-
             messages.success(request, 'Blog post successfully created')
             return redirect(reverse('view_blog'))
         else:
