@@ -28,9 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# DEBUG = 'DEVELOPMENT' in os.environ  # deploy
+DEBUG = 'DEVELOPMENT' in os.environ  # deploy
 
-DEBUG = True  # dev only
+# DEBUG = True  # dev only
 
 
 ALLOWED_HOSTS = ['zafiya2.herokuapp.com', 'localhost']
