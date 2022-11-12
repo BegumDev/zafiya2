@@ -12,8 +12,12 @@
                 <legend class="fieldset-label">Update Comment</legend>
                     {{ comment_form.comment | as_crispy_field }}
             </fieldset>
-            <button type="submit">Update Comment</button>
+            <button type="submit" class="btn btn-dark">Update Comment</button>
         </form>
+    </div>
+    <!-- cancel -->
+    <div class="col-12">
+        <a href="{% url 'view_blog' %}" class="btn btn-danger m-2">Cancel</a>
     </div>
 </div>
 

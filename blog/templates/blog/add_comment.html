@@ -11,8 +11,12 @@
         <form method="POST" action="">
             {% csrf_token %}
             {{ comment_form | crispy }}
-            <button type="submit">Add Post</button>
+            <button type="submit" class="btn btn-dark">Add Post</button>
         </form>
+    </div>
+    <!-- cancel -->
+    <div class="col-12">
+        <a href="{% url 'read_post' post.id %}" class="btn btn-danger m-2">Cancel</a>
     </div>
 </div>
 

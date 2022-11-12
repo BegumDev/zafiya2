@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="{% static 'checkout2/css/checkout2.css' %}">
+<link rel="stylesheet" href="{% static 'checkout2/css/checkout2.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -41,19 +41,20 @@
             <br>
             <div class="row">
                 <div class="col-12"><strong>Order Details:</strong></div>
-            </div> 
+            </div>
             {% for item in order.lineitems.all %}
-                <div class="row">
-                    <div class="col-12 col-md-3">
-                        <p>{{ item.product.name }}</p>
-                    </div>
-                    <div class="col-12 col-md-9">
-                        <p>{{ item.quantity }} @ £{{ item.product.price }} each</p>
-                    </div>
+            <div class="row">
+                <div class="col-12 col-md-3 mt-2">
+                    <p>{{ item.product.name }}</p>
                 </div>
+                <div class="col-12 col-md-9">
+                    <p>{{ item.quantity }} @ £{{ item.product.price }} each</p>
+                </div>
+            </div>
+            <hr class="w-50 m-0">
             {% endfor %}
             <div class="row">
-                <div class="col-12"><strong>Delivering To:</strong></div>
+                <div class="col-12 mt-2"><strong>Delivering To:</strong></div>
             </div>
             <hr>
             <div class="row">
@@ -67,11 +68,11 @@
                 </div>
             </div>
             {% if order.street_address2 %}
-                <div class="row">
-                    <div class="col-12 col-md-9">
-                        <p>{{ order.street_address2 }}</p>
-                    </div>
+            <div class="row">
+                <div class="col-12 col-md-9">
+                    <p>{{ order.street_address2 }}</p>
                 </div>
+            </div>
             {% endif %}
             {% if order.county %}
             <div class="row">
@@ -80,17 +81,17 @@
                 </div>
             </div>
             {% endif %}
-                <div class="row">
-                    <div class="col-12 col-md-9 ">
-                        <p>{{ order.town_or_city }}</p>
-                    </div>
+            <div class="row">
+                <div class="col-12 col-md-9 ">
+                    <p>{{ order.town_or_city }}</p>
                 </div>
+            </div>
             {% if order.postcode %}
-                <div class="row">
-                    <div class="col-12 col-md-9 ">
-                        <p>{{ order.postcode }}</p>
-                    </div>
+            <div class="row">
+                <div class="col-12 col-md-9 ">
+                    <p>{{ order.postcode }}</p>
                 </div>
+            </div>
             {% endif %}
             <div class="row">
                 <div class="col-12 col-md-9 ">
@@ -104,17 +105,24 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-3"><strong>Order Total:</strong></div>
-                <div class="col-12 col-md-9 ">£{{ order.order_total }}</div>
+                <div class="col-12 col-md-9 mb-1">£{{ order.order_total }}</div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-3">Delivery:</div>
-                <div class="col-12 col-md-9 ">£{{ order.delivery_cost }}</div>
+                <div class="col-12 col-md-9 mb-1">£{{ order.delivery_cost }}</div>
             </div>
             <div class="row">
                 <div class="col-12 col-md-3">Grand Total:</div>
-                <div class="col-12 col-md-9 ">£{{ order.grand_total }}</div>
+                <div class="col-12 col-md-9 mb-3">£{{ order.grand_total }}</div>
             </div>
         </div>
+        <!-- back to top button -->
+        <div class="btt-button back-to-top mb-3 my-auto mx-auto">
+            <a class="btt-link d-flex h-100">
+                <i class="fas fa-arrow-up mx-auto my-auto"></i>
+            </a>
+        </div>
+    </div>
     </div>
     <!-- <div class="row">
         <div class="col-7">
@@ -230,19 +238,29 @@
         </div>
     </div> -->
     {% if from_profile %}
-        <a href="{% url 'profile' %}" class="btn btn-black rounded-0 my-2">
-            <span class="text-uppercase">Back to Profile</span>
-        </a>
+    <a href="{% url 'profile' %}" class="btn btn-black rounded-0 my-2">
+        <span class="text-uppercase">Back to Profile</span>
+    </a>
     {% else %}
-        <a href="{% url 'home' %}" class="btn btn-md btn-primary mb-3">
-            <i class="fa-solid fa-chevron-left"></i>
-            <span>Back to the homepage</span>
-        </a>
+    <a href="{% url 'home' %}" class="btn btn-md btn-primary mb-3 mt-3">
+        <i class="fa-solid fa-chevron-left"></i>
+        <span>Back to the homepage</span>
+    </a>
     {% endif %}
 
 
 
 </section>
 
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('.btt-link').click(function (e) {
+        window.scrollTo(0, 0)
+    })
+</script>
 
 {% endblock %}

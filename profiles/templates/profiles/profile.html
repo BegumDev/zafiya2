@@ -9,6 +9,7 @@
 
 {% block content %}
 <div class="container">
+    <!-- users name -->
     <h2 class="logo-font mb-4">
         {% if request.user.is_authenticated %}
         <div class="row">
@@ -33,7 +34,45 @@
         <div class="col-12 col-md-6 col-lg-6">
             <h4 class="text-muted">Order History</h4>
             <hr>
-            <div class="table-responsive">
+
+            <!-- mobile screens -->
+            <div>
+                {% for order in orders %}
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        <strong><h5>Order Number:</h5></strong>
+                        <a href="{% url 'order_history' order.order_number %}" title="{{ order.order_number }}">
+                            {{ order.order_number|truncatechars:6 }}
+                        </a>
+                    </div>
+                    <div class="col-12 mb-2">
+                        <strong><h5>Order Date:</h5></strong>
+                        {{ order.date }}
+                    </div>
+                    <div class="col-12 mb-2">
+                        <strong><h5>Items:</h5></strong>
+                        {% for x in order.lineitems.all %}
+                        <div class="row">
+                            <div class="col-6">
+                                {{ x.product.name }} x {{ x.quantity }}
+                            </div>
+                            <div class="col-6">
+                                {{ x.product.price }} each
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-12 mb-2">
+                        <strong><h5>Grand Total:</h5></strong>
+                        £{{ order.grand_total }}
+                    </div>
+                </div>
+                <hr>
+                {% endfor %}
+            </div>
+
+            <!-- larger screens -->
+            <div class="table-responsive d-none d-md-block">
                 <table class="table table-sm table-borderless">
                     <thead>
                         <tr>
@@ -69,5 +108,6 @@
             </div>
         </div>
     </div>
+
 </div>
 {% endblock %}

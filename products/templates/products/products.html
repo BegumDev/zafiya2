@@ -12,7 +12,7 @@
 
 {% block content %}
 
-<section class="bg-light p-3">
+<section class="p-3">
     <div class="container-fluid">
         <div class="row">
             <!-- product card -->
@@ -66,7 +66,23 @@
             </div>
             {% endfor %}
         </div>
+        <!-- back to top button -->
+        <div class="btt-button back-to-top mb-3 my-auto mx-auto">
+            <a class="btt-link d-flex h-100">
+                <i class="fas fa-arrow-up mx-auto my-auto"></i>
+            </a>	
+        </div>
     </div>
 </section>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script type="text/javascript">
+    $('.btt-link').click(function(e) {
+        window.scrollTo(0,0)
+    })
+</script>
 
 {% endblock %}

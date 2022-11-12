@@ -2,21 +2,19 @@
 
 {% block content %}
 
-<h2 class="mt-3 text-center">Read Post Page</h2>
-<hr>
-<h3 class="text-center">{{ post.blog_title }}</h3>
+<h3 class="text-center mt-3">"{{ post.blog_title }}"</h3>
 <hr>
 
 <div class="m-4">
     <!-- blog post -->
     <div class="row m-4">
         <div class="col-12">
-            <p>{{ post.content }}</p>
+            <p>"{{ post.content }}"</p>
             <small>
-                <p>{{ post.author }}</p>
+                <p><strong>Author: </strong>{{ post.author }}</p>
             </small>
             <small>
-                <p>{{ post.created_on }}</p>
+                <p><strong>Date: </strong>{{ post.created_on }}</p>
             </small>
             <!-- post admin editing ability -->
             {% if request.user.is_superuser %}
@@ -35,8 +33,15 @@
             <div class="row">
                 <div class="col-12">
                     <p class="text-danger">"{{ x.comment }}"</p>
-                    <small><p class="text-info">comment by: {{ x.comment_author }}</p></small>
-                    <small><p class="text-danger">{{ x.date }}</p></small>
+                    <div class="row">
+                        <div class="col-6">
+                            <small><p class="text-info">comment by: {{ x.comment_author }}</p></small>
+                        </div>
+                        <div class="col-6">
+                            <small><p class="text-danger">Date: {{ x.date }}</p></small>
+                        </div>
+                    </div>
+
                     {% if request.user == x.comment_author or is.superuser %}
                         <small><a class="btn btn-sm btn-info" href="{% url 'edit_comment' x.id %}">Edit</a></small>
                         <small><a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
@@ -46,11 +51,15 @@
             </div>
             {% endfor %}
             <!-- adding comments -->
-            {% if request.user.is_authenticated %}
-                <a href="{% url 'add_comment' post.id %}">Click here to add a comment</a>
-            {% else %}
-                <a href="{% url 'account_login' %}">Log in to add a comment</a>
-            {% endif %}
+            <div class="row">
+                <div class="col-12 text-center">
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'add_comment' post.id %}">Add a comment</a>
+                    {% else %}
+                        <a href="{% url 'account_login' %}">Log in to add a comment</a>
+                    {% endif %}
+                </div>
+            </div>
         </div>
     </div>
     <!-- back to main blog button-->
