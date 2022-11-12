@@ -52,5 +52,22 @@
     * RESULT: PASS
 
 #### Defence testing scenarios.
-1. Logged out user types in the adding, updating or deleting urls.
-    * RESULT: 
+1. Logged out user types in the adding, updating or deleting post url.
+
+    * RESULT: User will routed to log in.
+
+2. Logged in user types in the adding, updating or deleting post url.
+
+    * RESULT: User will be routed back to the home page with an alert message confrming only authorised users can do so.
+
+3. Logged in user types in the adding comment url.
+
+    * RESULT: User will be allowed to do so.
+
+4. Logged in user types in the editing comment url.
+
+    * RESULT: User will be allowed to edit it if it is theirs, otherwise will be routed back to the home page with an alert message confrming only the orignal comment author can do so.
+
+5. Logged in user types in the deleting comment url.
+
+    * RESULT: User will be allowed to delete it if it is theirs and admin can also delete it (in the event of malicious comments), otherwise will be routed back to the home page with an alert message confrming only the orignal comment author can do so.
