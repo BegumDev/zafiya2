@@ -25,8 +25,9 @@ def all_products(request):
             if not query:
                 messages.error(request, "You didn't enter any serach requests")
                 return redirect(reverse('products'))
-            
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+
+            queries = Q(
+                name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
     context = {
@@ -34,7 +35,7 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
     }
-    
+
     return render(request, 'products/products.html', context)
 
 
@@ -46,7 +47,7 @@ def product_details(request, product_id):
     context = {
         'product': product,
     }
-    
+
     return render(request, 'products/product_details.html', context)
 
 
@@ -62,9 +63,11 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect(reverse('products'))    
+            return redirect(reverse('products'))
         else:
-            messages.error(request, "Adding product failed. Please check the form")
+            messages.error(
+                request, "Adding product failed. Please check the form"
+            )
     else:
         form = ProductForm()
 
@@ -117,4 +120,3 @@ def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     return redirect(reverse('products'))
-    
