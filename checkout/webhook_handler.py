@@ -11,6 +11,7 @@ from profiles.models import UserProfile
 import json
 import time
 
+
 class StripeWH_Handler:
     """Hnadle Stripe webhooks"""
 
@@ -26,7 +27,7 @@ class StripeWH_Handler:
         body = render_to_string(
             'checkout/confirmation_emails/confirmation_email_body.txt',
             {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
+
         send_mail(
             subject,
             body,
@@ -40,9 +41,8 @@ class StripeWH_Handler:
             content=f'Webhook received: {event["type"]}',
             status=200)
 
-
     def handle_payment_intent_succeeded(self, event):
-        """ Handle the payment_intent.succeeded webhook from Stripe """ 
+        """ Handle the payment_intent.succeeded webhook from Stripe """
 
         intent = event.data.object
         pid = intent.id
@@ -129,12 +129,12 @@ class StripeWH_Handler:
                 if order:
                     order.delete()
                 return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | ERROR: {e}', status=500
+                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                    status=500
                     )
         self._send_confirmation_email(order)
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: created order in webhook', status=200)
-
 
     def handle_payment_intent_payment_failed(self, event):
         """ Handle the payment_intent.payment_failed webhook from Stripe """

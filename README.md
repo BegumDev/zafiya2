@@ -2,7 +2,7 @@
 
 [View the live project here](https://zafiya2.herokuapp.com/)
 
-![Image of...]()
+![Image of responsive website](static/docs/images/am-i-responsive.JPG)
 
 ### Brief outline of websites purpose.
 This is a fictational store with fully operational payment processing facilites.
@@ -58,7 +58,7 @@ This is a fictational store with fully operational payment processing facilites.
         2. The quantity of a product can be added using the increment and decrement button before adding to the basket.
 
     * Blog Page:
-        1. Any user can add view a blogpost and read its details.
+        1. Any user can view a blogpost and read its details.
         2. Admin can create, edit or delete a blogpost.
         3. Any logged in user can create, update and delete their own comments to a blogpost.
         4. Any user can search through the blogpost.
@@ -88,16 +88,12 @@ This is a fictational store with fully operational payment processing facilites.
     * jQuery
     * PYTHON 3
     * 
-    * 
-    * 
-    * 
 
 * ### Frameworks, Libraries & Programs Used
     * Bootstrap4
     * Django
     * 
-    * 
-    * 
+
 * ### Development Tools.
     * Github:
         - Used to store the projects after being pushed using Git.
@@ -126,11 +122,27 @@ This is a fictational store with fully operational payment processing facilites.
 * ### Testing user stories from user experience (UX).
     [View testing results here.](static/docs/manual-user-story-testing.md)    
 
-* ### Testing Stripe Payments.
-    [View testing results here.]() 
+* ### Testing Checkout.
+    [View testing results here.]()
+
+* ### Testing .
+    [View testing results here.]()
+
+* ### Testing .
+    [View testing results here.]()
+
+* ### Testing .
+    [View testing results here.]()
+
+* ### Testing .
+    [View testing results here.]()
+
+* ### Testing .
+    [View testing results here.]()
+
         
 * ### Code validation.
-    <details><summary>HTML Validation Test;:</summary>
+    <details><summary>HTML Validation Test:</summary>
 
     ![HTML Validation Test;]()
     </details>

@@ -20,13 +20,10 @@ def view_blog(request):
             if not blog_search:
                 messages.error(request, "No search entered.")
                 return redirect(reverse('view_blog'))
-            
-            queries = Q(blog_title__icontains=blog_search) | Q(content__icontains=blog_search)
+            queries = Q(blog_title__icontains=blog_search) | Q(
+                content__icontains=blog_search
+            )
             posts = posts.filter(queries)
-
-    template = {
-        
-    }
 
     context = {
         'posts': posts,
@@ -85,7 +82,6 @@ def create_post(request):
         return redirect(reverse('view_blog'))
 
     form = BlogForm()
-    user = request.user
 
     if request.method == 'POST':
         form = BlogForm(request.POST)
@@ -96,10 +92,12 @@ def create_post(request):
             messages.success(request, 'Blog post successfully created')
             return redirect(reverse('view_blog'))
         else:
-            messages.error(request, 'There was an error with the form. Please try again.')
+            messages.error(
+                request, 'There was an error with the form. Please try again.'
+            )
     else:
         form = BlogForm()
-    
+
     template = 'blog/create_post.html'
     context = {
           'form': form,
@@ -124,10 +122,11 @@ def create_post(request):
 #             messages.success(request, 'Blog post successfully created')
 #             return redirect(reverse('view_blog'))
 #         else:
-#             messages.error(request, 'There was an error with the form. Please try again.')
+#             messages.error(
+#             request, 'There was an error with the form. Please try again.'
+# )
 #     else:
 #         form = BlogForm()
-    
 #     template = 'blog/create_post.html'
 #     context = {
 #           'form': form,
@@ -142,7 +141,7 @@ def update_post(request, id):
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only authorised users can do that.')
         return redirect(reverse('view_blog'))
-        
+
     post = get_object_or_404(BlogPost, id=int(id))
 
     current_info = {
@@ -158,7 +157,9 @@ def update_post(request, id):
             messages.success(request, 'Blog post successfully updated')
             return redirect(reverse('read_post', args=[post.id]))
         else:
-            messages.error(request, 'There was an error with the form. Please try again.')
+            messages.error(
+                request, 'There was an error with the form. Please try again.'
+            )
     else:
         form = BlogForm(initial=current_info)
 
@@ -174,7 +175,6 @@ def update_post(request, id):
 # @login_required
 # def update_post(request, id):
 #     """ View to create a blog post """
-  
 #     post = BlogPost.objects.get(id=int(id))
 
 #     current_info = {
@@ -190,15 +190,15 @@ def update_post(request, id):
 #             messages.success(request, 'Blog post successfully updated')
 #             return redirect(reverse('view_blog'))
 #         else:
-#             messages.error(request, 'There was an error with the form. Please try again.')
-    
+#             messages.error(
+# request, 'There was an error with the form. Please try again.'
+# )
 #     template = 'blog/update_post.html'
 #     context = {
 #           'form': form,
 #       }
 
 #     return render(request, template, context)
-
 
 
 @login_required
@@ -217,7 +217,7 @@ def delete_post(request, id):
 
 
 # @login_required
-# def delete_post(request, id):        
+# def delete_post(request, id):
 #     post = BlogPost.objects.get(id=int(id))
 #     post.delete()
 #     messages.success(request, 'Successfully deleted post.')
@@ -245,7 +245,7 @@ def add_comment(request, id):
             messages.success(request, 'Failed to add comment')
     else:
         comment_form = CommentForm()
-    
+
     template = 'blog/add_comment.html'
     context = {
         'post': post,
@@ -264,7 +264,6 @@ def edit_comment(request, id):
     if not user == old_comment.comment_author:
         messages.error(request, 'Sorry, only the comment author can do that.')
         return redirect(reverse('view_blog'))
-    
     current_info = {
         'comment': old_comment.comment,
     }
@@ -276,9 +275,12 @@ def edit_comment(request, id):
         if comment_form.is_valid():
             comment_form.save()
             messages.success(request, 'Comment successfully updated')
-            return redirect(reverse('view_blog'))  # come back to this to route to post id
+            return redirect(reverse('view_blog'))
+            # come back to this to route to post id
         else:
-            messages.error(request, 'Failed to update comment, please try again.')
+            messages.error(
+                request, 'Failed to update comment, please try again.'
+            )
 
     comment_form = CommentForm(instance=old_comment)
 
@@ -289,12 +291,12 @@ def edit_comment(request, id):
     return render(request, template, context)
 
 
-
 # def edit_comment(request, id):
 
 #     old_comment = PostComment.objects.get(id=int(id))
 
-#     # get_object_or_404(id, comment_author = request.user) - query on id and user
+#     # get_object_or_404(id, comment_author = request.user) -
+# query on id and user
 
 #     current_info = {
 #         'comment': old_comment.comment,
@@ -329,7 +331,9 @@ def delete_comment(request, id):
         comment.delete()
         messages.success(request, 'Successfully deleted comment.')
     else:
-        messages.error(request, "Sorry only the original author can delete this comment")
+        messages.error(
+            request, "Sorry only the original author can delete this comment"
+        )
 
     return redirect(reverse('view_blog'))
 
