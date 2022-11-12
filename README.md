@@ -120,15 +120,15 @@ This is a fictational store with fully operational payment processing facilites.
 ## Testing
 ***
 * ### Testing user stories from user experience (UX).
-    [View testing results here.](static/docs/manual-user-story-testing.md)    
+    [View testing results here.](static/docs/manual-user-story-testing.md)
+
+* ### Testing registration and accounts.
+    [View testing results here.](static/docs/registration-account.md)
 
 * ### Testing Checkout.
     [View testing results here.](static/docs/checkout-testing.md)
 
 * ### Testing blogposts and comments.
-    [View testing results here.]()
-
-* ### Testing .
     [View testing results here.]()
 
 * ### Testing .
