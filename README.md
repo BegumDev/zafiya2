@@ -125,11 +125,11 @@ This is a fictational store with fully operational payment processing facilites.
 * ### Testing registration and accounts.
     [View testing results here.](static/docs/registration-account.md)
 
-* ### Testing Checkout.
+* ### Testing checkout.
     [View testing results here.](static/docs/checkout-testing.md)
 
 * ### Testing blogposts and comments.
-    [View testing results here.]()
+    [View testing results here.](static/docs/blog-comments.md)
 
 * ### Testing .
     [View testing results here.]()

@@ -20,10 +20,37 @@
             {% if request.user.is_superuser %}
             <div class="row m-4">
                 <div class="col-6 col-md-4 col-lg-3">
-                    <small><a href="{% url 'update_post' post.id %}" class="text-success">Edit Post</a></small>
+                    <button type="button" class="btn btn-sm btn-secondary"><a href="{% url 'update_post' post.id %}"
+                            class="text-light">Edit Post</a></button>
                 </div>
                 <div class="col-6 col-md-4 col-lg-3">
-                    <small><a href="{% url 'delete_post' post.id %}" class="text-danger">Delete Post</a></small>
+                    <!-- delete modal trigger -->
+                    <button type="button" class="btn btn-danger" data-toggle="modal"
+                        data-target="#postModal">Delete</button>
+                    <!-- <small><a href="{% url 'delete_post' post.id %}" class="text-danger">Delete Post</a></small> -->
+                </div>
+                <!--Delete Modal -->
+                <div class="modal fade" id="postModal" tabindex="-1" role="dialog" aria-labelledby="postModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="postModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you would like to delete this post?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-danger">
+                                    <a href="{% url 'delete_post' post.id %}" class="text-light">Delete Post</a>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             {% endif %}
@@ -35,28 +62,59 @@
                     <p class="text-dark">"{{ x.comment }}"</p>
                     <div class="row">
                         <div class="col-6 col-md-4 col-lg-3">
-                            <small><p class="text-dark">comment by: {{ x.comment_author }}</p></small>
+                            <small>
+                                <p class="text-dark">comment by: {{ x.comment_author }}</p>
+                            </small>
                         </div>
                         <div class="col-6 col-md-4 col-lg-3">
-                            <small><p class="text-dark">Date: {{ x.date }}</p></small>
+                            <small>
+                                <p class="text-dark">Date: {{ x.date }}</p>
+                            </small>
                         </div>
                     </div>
 
                     {% if request.user == x.comment_author %}
-                        <div class="row">
-                            <div class="col-3">
-                                <small><a class="btn btn-sm btn-dark" href="{% url 'edit_comment' x.id %}">Edit</a></small>
-                            </div>
-                            <div class="col-3">
-                                <a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
+                    <div class="row">
+                        <div class="col-3">
+                            <small><a class="btn btn-sm btn-secondary"
+                                    href="{% url 'edit_comment' x.id %}">Edit</a></small>
+                        </div>
+                        <div class="col-3">
+                            <!-- delete comment modal trigger -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteCommentModal">Delete</button>
+                            <!-- <a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small> -->
+                        </div>
+                        <!-- delete comment modal -->
+                        <div class="modal fade" id="deleteCommentModal" tabindex="-1" role="dialog"
+                            aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteCommentModalLabel">Modal title</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you would like to delete this comment?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a>
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    </div>
                     {% elif request.user.is_superuser %}
-                        <div class="row">
-                            <div class="col-3">
-                                <a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
-                            </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <a class="btn btn-sm btn-danger" href="{% url 'delete_comment' x.id %}">Delete</a></small>
                         </div>
+                    </div>
+
                     {% endif %}
                     <hr>
                 </div>
@@ -66,9 +124,9 @@
             <div class="row">
                 <div class="col-12 text-center">
                     {% if request.user.is_authenticated %}
-                        <a href="{% url 'add_comment' post.id %}">Add a comment</a>
+                    <a href="{% url 'add_comment' post.id %}">Add a comment</a>
                     {% else %}
-                        <a href="{% url 'account_login' %}">Log in to add a comment</a>
+                    <a href="{% url 'account_login' %}">Log in to add a comment</a>
                     {% endif %}
                 </div>
             </div>
