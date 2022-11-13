@@ -22,8 +22,8 @@
     * RESULT: PASS
 
 ### Deleting a blogpost (admin functionality only).
-1. 
-2. 
+1. Click on intended item.
+2. A modal will pop up and click 'delete.'
 
     * RESULT: PASS
 
@@ -46,8 +46,8 @@
     * RESULT: PASS
 
 ### Deleting a comment (only available to the original comment author and admin).
-1. 
-2. 
+1. Click on intended item.
+2. A modal will pop up and click 'delete.'
 
     * RESULT: PASS
 

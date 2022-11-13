@@ -31,12 +31,17 @@ This is a fictational store with fully operational payment processing facilites.
 - ### Wireframes
     <details><summary>Main Page Wireframe:</summary>
 
-    ![Main Page Wireframe]()
+    ![Main Page Wireframe](static/docs/images/wireframes/main-wireframe.JPG)
     </details>
 
-    <details><summary>Wireframe:</summary>
+    <details><summary>Products Wireframe:</summary>
 
-    ![Wireframe]()
+    ![Wireframe](static/docs/images/wireframes/products-wireframe.JPG)
+    </details>
+
+    <details><summary>Products Details Wireframe:</summary>
+
+    ![Wireframe](static/docs/images/wireframes/products-details-wireframe.JPG)
     </details>
 
 ## Features
@@ -74,11 +79,7 @@ This is a fictational store with fully operational payment processing facilites.
 * ### Future Features
     * Due to time constraints, the following features could not be added but will be enabled in the future;
         1. Email facility
-        2. Adding more personalisation to profiles.
-        3. 
-        4. 
-        5. 
-        
+        2. Adding more personalisation to profiles.        
         
 ## Technologies Used
 ***
@@ -129,20 +130,14 @@ This is a fictational store with fully operational payment processing facilites.
 * ### Testing blogposts and comments.
     [View testing results here.](static/docs/blog-comments.md)
 
-* ### Testing .
-    [View testing results here.]()
-
-* ### Testing .
-    [View testing results here.]()
-
-* ### Testing .
-    [View testing results here.]()
+* ### Testing Products and Profile.
+    * These have been extensively tested however I could not document the results here due to time constraints.
 
         
 * ### Code validation.
     <details><summary>HTML Validation Test:</summary>
 
-    ![HTML Validation Test;]()
+    ![HTML Validation Test;](static/docs/images/wireframes/HTML-validation.JPG)
     </details>
 
     <details><summary>CSS Validation:</summary>
@@ -159,11 +154,7 @@ This is a fictational store with fully operational payment processing facilites.
     ![JSHint Update and remove items validation Test;](static/docs/images/update-remove-js.JPG)
     </details>
     
-    <details><summary>PEP 8 Tests:</summary>
-
-    ![PEP8 validation Test;]()
-
-    </details>
+    * PEP8 results are discussed below in known errors.
 
 * ### Supported screens and browsers.
     * Mobiles
@@ -175,13 +166,24 @@ This is a fictational store with fully operational payment processing facilites.
     
 
 * ### Fixed bugs.
-    1. Problem.
-        - Fix: 
+    1. Problem - 2 payments were being created in my 1st workspace, I could not find what triggered the 2nd payment intent and in turn was creating 2 orders backend.
+        - Fix: I created a new checkout app but had the same issue still. So I created a new project altogether. The link to the repo is below:
+
+        [View the old project here](https://github.com/BegumDev/zafiya)
 
 * ### Known errors.
-    1. Example.com in emails
-    2. 
-    3. 
+    1. Example.com in emails - this was set when the Heroku was first created by following CI videos. With tutor help I could not find how to adjust it.
+    2. Orders display in the profile but it runs out of space. Due to time constraints I could not apply its fix.
+    3. HTML errors - The nav has 2 ids - this was taken from Bootstrap and I could not remove the ID tags into class tags. I have sought tutor support on this matter but we are both unsure how to deal with this as I had taken it from bootstrap.
+    4. PEP8 errors;
+        * E501 - env file error - the keys cannot be shortened nor broken down the middle.
+        * VSCODE errors - these are errors pertaining to the template which is outside my knowlede base.
+        * Migrations errors - these, again are created backend with tutor support and I'm advised to leave them.
+        * Checkout signals error - the code base is the exact same as CI thus I couldnt change it.
+        * E501 - in checkout app - again I tried numberous times to break up the lines but any configuration would break the code.
+        * E501 - in settings file - again these are pre - configured.
+
+        For the risk of creating bigger bugs and with tutor support guidance - I am advised to leave these and research these in the future. I acknowledge these are PEP8 errora however they are either outside my knowledge base or break the code.
 
 
 ## Deployment
@@ -240,10 +242,10 @@ This is a fictational store with fully operational payment processing facilites.
 ## Credits
 ***
 * ### Code
-    - 
+    - The code base was heavily supported by Code Institute.
 
 * ### Media
-    - 
+    - All media files are not taken from google images and in no means my own. They are only used for illustration purposes.
 
 * ### Acknowledgements
-    - 
+    - My sincerest thanks to tutor support for the incredible help and all my fellow in Code Institute.
