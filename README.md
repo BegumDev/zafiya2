@@ -26,7 +26,7 @@ This is a fictational store with fully operational payment processing facilites.
         -  White, Black, Dark Grey (all taken from Bootstrap)
 
     * #### Imagery
-        - 
+        - Imaages of house frgarnaces throughout are designed to remind the user of the sites purpose.
 
 - ### Wireframes
     <details><summary>Main Page Wireframe:</summary>
@@ -73,8 +73,8 @@ This is a fictational store with fully operational payment processing facilites.
     
 * ### Future Features
     * Due to time constraints, the following features could not be added but will be enabled in the future;
-        1. 
-        2. 
+        1. Email facility
+        2. Adding more personalisation to profiles.
         3. 
         4. 
         5. 
@@ -87,12 +87,10 @@ This is a fictational store with fully operational payment processing facilites.
     * CSS3
     * jQuery
     * PYTHON 3
-    * 
 
 * ### Frameworks, Libraries & Programs Used
     * Bootstrap4
     * Django
-    * 
 
 * ### Development Tools.
     * Github:
@@ -189,9 +187,55 @@ This is a fictational store with fully operational payment processing facilites.
 ## Deployment
 ***
 1. Create Heroku App
-2. Connect to AWS
-3. Connect Gmail
+    1. Connecting to Heroku:
+        * Using Gitpod and having pushed to Github the project was deployed to Heroku using the following steps.
+            1. Log in to Heroku, create a new app by clicking "new" and "create new app".
+            2. Give it a name and set the regios closest to you.
+            3. Add PostgreSQL in the resources tab.
+            4. Create a requirements.txt file using command pip3 freeze > requirements.txt.
+            5. Create a Procfile with the terminal command web: gunicorn knit_happens.wsgi:application.
+            6. Connect to Heroku using the CLI with commmand 'Heroku login -i" and input login details.
+            7. Type 'heroku:config:set DISABLE_COLLECTSTATIC=1 --app' to disable COLLECTSTATIC for now so that Heroku won't try to collect static files when we deploy. AWS will handle this
+            8. Add Heroku app name to ALLOWED_HOSTS in settings.py.
+            9. Push changes and deploy to heroku (connect the app to Heroku using 'connect to Github).
+            10. Deploy to Heroku using git push heroku main.
+            11. Type python3 manage.py loaddata categories.json and python3 manage.py loaddata products.json using the fixtures file to load data onto the database.
+            12. Create a superuser using command: heroku run python3 manage.py createsuperuser so that you can log in to admin.
+            12. Now prepare for AWS.
 
+    2. Connect to AWS
+        1. Create Amazon AWS account and create a new bucket in the S3 services and choose your closest region.
+        2. Uncheck block all public access and create bucket.
+        3. From Properties tab turn on static website hosting using default values of index.html and errors.html.
+        4. On permissions tab include CORS configuration:
+        ![Image of CORS configuration](static/docs/images/aws.JPG)
+        5. Create security policy: S3 Bucket Policy, allow all principles by adding a * and Amazon S3 services and selecting Get Object action. Paste ARN from Bucket Policy, add statement, generate policy and copy and paste into Bucket Policy. Also add /* at end of resource key to allow use of all pages.
+        6. Under public access select access to all List Objects.
+        7. Create Group for the bucket through IAM. Create policy by importing AWS S3 Full Access policy and add ARN from bucket to the policy resources. Attach policy to group.
+        8. Create user, give programmatic access and add user to the group. Download CSV file when prompted to save access key ID an secret access key to save to environment and config variables.
+        9. Add AWS_STORAGE_BUCKET_NAME, AWS_S3_REGION_NAME = 'eu-west-2' to settings.py.
+        10. Add, commit and push to GitHub then navigate to Heroku to confirm static files collected successfully on the Build Log. The DISABLE_COLLECTSTATIC variable can now be deleted.
+
+    3. Connect Gmail
+        1. Go to your Gmail account and navigate to the 'Settings' tab.
+        2. Go to 'Accounts and Imports', 'Other Google Account Settings'.
+        3. Go to the 'Security' tab, and scroll down to 'Signing in to Google'.
+        4. If required, click to turn on '2-step Verification**', then 'Get Started', and enter your password.
+        5. Verify using your preferred method, and turn on 2-step verification.
+        6. Go back to 'Security', 'Signing in to Google', then go to 'App Passwords'.
+        7. Enter your password again if prompted, then set 'App' to Mail, 'Device' to Other, and type in Django.
+        8. Copy and paste the passcode that shows up, this is your 'EMAIL_HOST_PASS' variable to add to your environment/config variables. 'EMAIL_HOST_USER' is the Gmail email address.
+
+    4. Confiv Vars
+        1. SECRET_KEY: This is a random string provided when creating the Django project and can easily be changed to ensure extra security.
+        2. DATABASE_URL: This is temporary.
+        3. STRIPE_PUBLIC_KEY: Retrived from Stripe Dashboard in the Developer's API section (Publishable key).
+        4. STRIPE_SECRET_KEY: Retrived from Stripe Dashboard in the Developer's API section (Secret key)
+        5. STRIPE_WH_SECRET: Retrived from Stripe Dashboard in the Developer's after creating an endpoint for your webhook (Signing secret).
+        6. EMAIL_HOST_USER: Your email address or username. See below for instructions.
+        7. EMAIL_HOST_PASS: Your passcode from your email client. See below for instructions.
+        8. AWS_SECRET_ACCESS_KEY: From the CSV file that you download having created a User in Amazon AWS S3. See below for instructions.
+        9. AWS_ACCESS_KEY_ID: From the CSV file that you download having created a User in Amazon AWS S3. See below for instructions.
 
 ## Credits
 ***
