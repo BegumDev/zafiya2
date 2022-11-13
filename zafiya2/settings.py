@@ -13,8 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import dj_database_url  # for deploy
 
 import os  # dev
-# if os.path.exists("env.py"):
-#     import env  # dev
+
 
 from pathlib import Path
 
@@ -29,8 +28,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = 'DEVELOPMENT' in os.environ  # deploy
-
-# DEBUG = True  # dev only
 
 
 ALLOWED_HOSTS = ['zafiya2.herokuapp.com', 'localhost']
@@ -215,20 +212,12 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-# dev variables
-# STRIPE_CURRENCY = 'gbp'
-# STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
-# STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-# STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
 # deploy variables
 STRIPE_CURRENCY = 'gbp'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
-
-
-# ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
 if 'DEVELOPMENT' in os.environ:

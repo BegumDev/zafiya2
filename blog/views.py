@@ -44,36 +44,6 @@ def read_post(request, id):
     return render(request, template, context)
 
 
-# def read_post(request, id):
-#     """ View individual post and be able to comment on them"""
-
-#     post = BlogPost.objects.get(id=int(id))
-
-#     # create a comment
-#     comment_form = CommentForm()
-
-#     if request.method == 'POST':
-#         comment_form = CommentForm(request.POST)
-#         if comment_form.is_valid():
-#             instance = comment_form.save(commit=False)
-#             instance.post = post  # attach the comment form to the post
-#             instance.comment_author = request.user
-#             instance.save()
-#             messages.success(request, 'Added comment')
-#             return redirect(reverse('read_post', args=[post.id]))
-#         else:
-#             messages.success(request, 'Failed to add comment')
-#     else:
-#         comment_form = CommentForm()
-
-#     template = 'blog/read_post.html'
-#     context = {
-#         'post': post,
-#         'comment_form': comment_form,
-#     }
-#     return render(request, template, context)
-
-
 @login_required
 def create_post(request):
     """ View to create a blog post """
@@ -104,35 +74,6 @@ def create_post(request):
       }
 
     return render(request, template, context)
-
-
-# @login_required
-# def create_post(request):
-#     """ View to create a blog post """
-
-#     form = BlogForm()
-
-#     if request.method == 'POST':
-#         form = BlogForm(request.POST)
-#         if form.is_valid():
-#             data = form.save(commit=False)
-#             data.author = User(id=request.user.id)
-#             data.save()
-
-#             messages.success(request, 'Blog post successfully created')
-#             return redirect(reverse('view_blog'))
-#         else:
-#             messages.error(
-#             request, 'There was an error with the form. Please try again.'
-# )
-#     else:
-#         form = BlogForm()
-#     template = 'blog/create_post.html'
-#     context = {
-#           'form': form,
-#       }
-
-#     return render(request, template, context)
 
 
 @login_required
@@ -172,35 +113,6 @@ def update_post(request, id):
     return render(request, template, context)
 
 
-# @login_required
-# def update_post(request, id):
-#     """ View to create a blog post """
-#     post = BlogPost.objects.get(id=int(id))
-
-#     current_info = {
-#         'blog_title': post.blog_title,
-#         'content': post.content,
-#     }
-#     form = BlogForm(initial=current_info)
-
-#     if request.method == 'POST':
-#         form = BlogForm(request.POST, instance=post)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Blog post successfully updated')
-#             return redirect(reverse('view_blog'))
-#         else:
-#             messages.error(
-# request, 'There was an error with the form. Please try again.'
-# )
-#     template = 'blog/update_post.html'
-#     context = {
-#           'form': form,
-#       }
-
-#     return render(request, template, context)
-
-
 @login_required
 def delete_post(request, id):
     """ a view for authorised admin to delete a post """
@@ -216,15 +128,6 @@ def delete_post(request, id):
     return redirect(reverse('view_blog'))
 
 
-# @login_required
-# def delete_post(request, id):
-#     post = BlogPost.objects.get(id=int(id))
-#     post.delete()
-#     messages.success(request, 'Successfully deleted post.')
-
-#     return redirect(reverse('view_blog'))
-
-
 @login_required
 def add_comment(request, id):
     """ a view to create a comment """
@@ -236,7 +139,7 @@ def add_comment(request, id):
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
             instance = comment_form.save(commit=False)
-            instance.post = post  # attach the comment form to the post
+            instance.post = post
             instance.comment_author = request.user
             instance.save()
             messages.success(request, 'Added comment')
@@ -276,7 +179,6 @@ def edit_comment(request, id):
             comment_form.save()
             messages.success(request, 'Comment successfully updated')
             return redirect(reverse('view_blog'))
-            # come back to this to route to post id
         else:
             messages.error(
                 request, 'Failed to update comment, please try again.'
@@ -289,36 +191,6 @@ def edit_comment(request, id):
           'comment_form': comment_form,
     }
     return render(request, template, context)
-
-
-# def edit_comment(request, id):
-
-#     old_comment = PostComment.objects.get(id=int(id))
-
-#     # get_object_or_404(id, comment_author = request.user) -
-# query on id and user
-
-#     current_info = {
-#         'comment': old_comment.comment,
-#     }
-
-#     comment_form = CommentForm(initial=current_info)
-
-#     if request.method == 'POST':
-#         comment_form = CommentForm(request.POST, instance=old_comment)
-#         if comment_form.is_valid():
-#             comment_form.save()
-#             messages.success(request, 'Comment successfully updated')
-#             return redirect(reverse('view_blog'))
-
-#         comment_form = CommentForm()
-
-#     template = 'blog/edit_comment.html'
-#     context = {
-#           'comment_form': comment_form,
-#     }
-
-#     return render(request, template, context)
 
 
 @login_required
@@ -336,11 +208,3 @@ def delete_comment(request, id):
         )
 
     return redirect(reverse('view_blog'))
-
-
-# def delete_comment(request, id):
-#     comment = PostComment.objects.get(id=int(id))
-#     comment.delete()
-#     messages.success(request, 'Successfully deleted comment.')
-
-#     return redirect(reverse('view_blog'))
