@@ -13,22 +13,12 @@ body {
     height: 280px;
 }
 
-/* .fragrance-card {
-    width: 300px;
-    height: 300px;
-}
-
-.fragrance-card img {
-    width: 250px;
-    height: 250px;
-} */
-
 .blog {
     height: 600px;
 }
 
 footer {
-    height: 60px;
+    height: 80px;
 }
 
 section {
@@ -115,6 +105,13 @@ section {
     text-decoration: none;
     color: #777777;
 }
+
+.card {
+    width: 18rem;
+}
+
+
+
 
 /* ---------------- media queries ---------------- */
 
