@@ -1,6 +1,6 @@
 <h1 align="center">Zafiya2</h1>
 
-[View the live project here](https://zafiya2.herokuapp.com/)
+[View the live project here](https://zafiya2.onrender.com)
 
 ![Image of responsive website](static/docs/images/am-i-responsive.JPG)
 
