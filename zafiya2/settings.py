@@ -29,7 +29,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DEBUG = 'DEVELOPMENT' in os.environ  # deploy
 
 
-ALLOWED_HOSTS = ['zafiya2.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    'zafiya2.herokuapp.com',
+    'localhost',
+]
+
+# for render deployment
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 
 # Application definition
